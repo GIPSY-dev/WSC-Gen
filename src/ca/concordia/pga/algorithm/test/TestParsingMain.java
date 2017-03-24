@@ -24,7 +24,7 @@ import org.dom4j.io.XMLWriter;
 
 import ca.concordia.pga.algorithm.utils.CombinationHelper;
 import ca.concordia.pga.algorithm.utils.PGValidator;
-import ca.concordia.pga.algorithm.utils.SolutionChecker;
+//import ca.concordia.pga.algorithm.utils.SolutionChecker; "Class is absent from the source".
 import ca.concordia.pga.models.*;
 import de.vs.unikassel.generator.converter.bpel_creator.BPEL_Creator;
 

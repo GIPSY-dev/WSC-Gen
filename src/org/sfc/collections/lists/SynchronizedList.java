@@ -447,7 +447,7 @@ public class SynchronizedList<T> extends DefaultList<T> {
    *          The comparator to be used when sorting this list.
    */
   @Override
-  public synchronized void sort(final Comparator<T> comparator) {
+  public synchronized void sort(final Comparator<? super T> comparator) {
     super.sort(comparator);
   }
 

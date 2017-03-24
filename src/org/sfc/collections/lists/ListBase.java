@@ -432,7 +432,7 @@ public abstract class ListBase<T> extends AbstractList<T> implements
    * @param comparator
    *          The comparator to be used when sorting this list.
    */
-  public void sort(final Comparator<T> comparator) {
+  public void sort(final Comparator<? super T> comparator) {
     java.util.Collections.sort(this, comparator);
   }
 }

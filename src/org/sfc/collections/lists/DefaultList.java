@@ -977,7 +977,7 @@ public class DefaultList<T> extends ListBase<T> {
    *          The comparator to be used when sorting this list.
    */
   @Override
-  public void sort(final Comparator<T> comparator) {
+  public void sort(final Comparator<? super T> comparator) {
     java.util.Arrays.sort(this.m_data, 0, this.m_count, comparator);
   }
 

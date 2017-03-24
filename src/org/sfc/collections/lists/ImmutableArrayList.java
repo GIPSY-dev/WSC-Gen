@@ -245,7 +245,7 @@ public class ImmutableArrayList<T> extends DefaultList<T> {
    *           always.
    */
   @Override
-  public final void sort(Comparator<T> comparator) {
+  public final void sort(Comparator<? super T> comparator) {
     throw new UnsupportedOperationException();
   }
 

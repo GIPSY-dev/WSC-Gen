@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.Rectangle;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -19,6 +18,10 @@ import de.vs.unikassel.generator.gui.listener.GeneratorGUIListener;
 import de.vs.unikassel.generator.gui.listener.GeneratorGUIMouseListener;
 
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -130,6 +133,10 @@ public class GeneratorGUI extends JFrame {
 
 	private JLabel gipsyhelpLabel = null;
 	
+	private JLabel gipsycolonLabel = null;
+
+	private JPanel newContentPane = null;
+	
 
 	/**
 	 * This method initializes inputDatajPanel	
@@ -194,11 +201,16 @@ public class GeneratorGUI extends JFrame {
 			solutionsjLabel.setText("Solutions");			
 			numberOfServicesjLabel = new JLabel();
 			ifgipsyLabel = new JLabel();
-			ifgipsyLabel.setBounds(new Rectangle(15, 260, 101, 27));
+			ifgipsyLabel.setBounds(new Rectangle(15, 256, 101, 27));
 			ifgipsyLabel.setText("Context-aware");
 			gipsyhelpLabel  = new JLabel();
-			gipsyhelpLabel.setBounds(new Rectangle(102,260,19,27));
+			gipsyhelpLabel.setBounds(new Rectangle(102,256,19,27));
+			gipsyhelpLabel.setName("gipsyHelp");
 			gipsyhelpLabel.setText("(?)");
+			gipsyhelpLabel.addMouseListener(new GeneratorGUIMouseListener(this, gipsyhelpLabel));
+			gipsycolonLabel = new JLabel();
+			gipsycolonLabel.setBounds(new Rectangle(120, 256, 19, 27));
+			gipsycolonLabel.setText(":");
 			numberOfServicesjLabel.setBounds(new Rectangle(15, 71, 117, 27));
 			numberOfServicesjLabel.setText("Number of Services");
 			numberOfConceptsjLabel = new JLabel();
@@ -206,7 +218,7 @@ public class GeneratorGUI extends JFrame {
 			numberOfConceptsjLabel.setBounds(new Rectangle(15, 29, 119, 27));
 			inputDatajPanel = new JPanel();
 			inputDatajPanel.setLayout(null);
-			inputDatajPanel.setBounds(new Rectangle(1, 1, 329, 350));
+			inputDatajPanel.setBounds(new Rectangle(3, 3, 329, 350));
 			inputDatajPanel.setBorder(BorderFactory.createTitledBorder(null, "Input-Informations", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)));
 			inputDatajPanel.add(numberOfConceptsjLabel, null);
 			inputDatajPanel.add(numberOfServicesjLabel, null);
@@ -233,6 +245,7 @@ public class GeneratorGUI extends JFrame {
 			inputDatajPanel.add(solutionDepthHelpjLabel, null);
 			inputDatajPanel.add(solutionDepthColonjLabel, null);
 			inputDatajPanel.add(gipsyhelpLabel, null);
+			inputDatajPanel.add(gipsycolonLabel, null);
 		}
 		return inputDatajPanel;
 	}
@@ -241,9 +254,13 @@ public class GeneratorGUI extends JFrame {
 		
 		if (buttonsjPanel == null){
 			buttonsjPanel = new JPanel();
-			buttonsjPanel.setLayout(null);
-			buttonsjPanel.add(getAddSolutionjButton(),null);
-			buttonsjPanel.add(getRemoveSolutionjButton(),null);
+			buttonsjPanel.setLayout(new GridBagLayout());
+			GridBagConstraints c = new GridBagConstraints();
+			c.insets = new Insets(120,120,120,120);
+			c.weightx = 10.5;
+			c.weighty = 12.5;
+			buttonsjPanel.add(getStartjButton(), c);
+			buttonsjPanel.add(getInfojButton(), c);
 		}
 		return buttonsjPanel;
 	}
@@ -306,7 +323,7 @@ public class GeneratorGUI extends JFrame {
 			bpelFileNamejLabel.setText("BPEL-File-Name:");
 			outputDatajPanel = new JPanel();
 			outputDatajPanel.setLayout(null);
-			outputDatajPanel.setBounds(new Rectangle(1, 352, 329, 363));
+			outputDatajPanel.setBounds(new Rectangle(1, 352, 329, 350));
 			outputDatajPanel.setBorder(BorderFactory.createTitledBorder(null, "Output-Informations", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)));
 			outputDatajPanel.add(bpelFileNamejLabel, null);
 			outputDatajPanel.add(getBpelFileNamejTextField(), null);
@@ -471,7 +488,7 @@ public class GeneratorGUI extends JFrame {
 	private JButton getStartjButton() {
 		if (startjButton == null) {
 			startjButton = new JButton();
-			startjButton.setBounds(new Rectangle(8, 732, 122, 28));
+			startjButton.setBounds(new Rectangle(8, 732, 122, 50));
 			startjButton.setText("Start");
 			startjButton.addActionListener(new GeneratorGUIListener(this));
 		}
@@ -555,7 +572,7 @@ public class GeneratorGUI extends JFrame {
 	private JButton getInfojButton() {
 		if (infojButton == null) {
 			infojButton = new JButton();
-			infojButton.setBounds(new Rectangle(262, 732, 74, 28));
+			infojButton.setBounds(new Rectangle(262, 732, 74, 50));
 			infojButton.setText("Info");
 			infojButton.addActionListener(new GeneratorGUIListener(this));
 		}
@@ -610,10 +627,10 @@ public class GeneratorGUI extends JFrame {
 	 * @return void
 	 */
 	private void initialize() {
-		this.setSize(352, 801);
+		this.setSize(700, 750);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setContentPane(getJContentPane());
+		this.setContentPane(getJContentPaneNew());
 		this.setTitle("Generator");
 		this.setLocationRelativeTo(null);		
 	}
@@ -626,16 +643,23 @@ public class GeneratorGUI extends JFrame {
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
-			jContentPane.setLayout(null);
-			jContentPane.add(getInputDatajPanel(), null);
-			jContentPane.add(getOutputDatajPanel(), null);
-			jContentPane.add(getButtonsjPanel(),null);
-			//jContentPane.add(getStartjButton(), null);
-			//jContentPane.add(getInfojButton(), null);
+			jContentPane.setLayout(new GridLayout(1, 2));
+			jContentPane.add(getInputDatajPanel(),null);
+			jContentPane.add(getOutputDatajPanel(),null);
+			
 		}
 		return jContentPane;
 	}
-
+	
+	private JPanel getJContentPaneNew() {
+		if(newContentPane == null) {
+		newContentPane  = new JPanel();
+		newContentPane.setLayout(new GridLayout(2, 2));
+		newContentPane.add(getJContentPane(), null);
+		newContentPane.add(getButtonsjPanel(),null);
+		}
+		return newContentPane;
+	}
 	/**
 	 * @return the solutionDepthjLabel
 	 */

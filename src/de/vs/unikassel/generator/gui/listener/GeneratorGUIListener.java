@@ -105,7 +105,7 @@ class TaskGenerator implements Runnable {
 	 * The dialog that displays the progress-panel.
 	 */
 	private ProgressDialog progressDialog;
-		
+	
 	/**
 	 * Creates a TaskGenerator.
 	 * @param numberOfConcepts The number of concepts the taxonomy should contain.
@@ -471,6 +471,19 @@ class TaskGenerator implements Runnable {
 public class GeneratorGUIListener implements ActionListener, ItemListener{
 	
 	/**
+	 * The boolean value that is used in WSDL_Creator to toggle the service type. 
+	 */
+	public static boolean gipsy;
+	
+	public static boolean isGipsy() {
+		return gipsy;
+	}
+
+	private static void setGipsy(boolean gipsy) {
+		GeneratorGUIListener.gipsy = gipsy;
+	}
+
+	/**
 	 * The GeneratorGUI-frame.
 	 */
 	private GeneratorGUI generatorGUI;
@@ -679,7 +692,7 @@ public class GeneratorGUIListener implements ActionListener, ItemListener{
 			}
 		}
 		
-		
+		setGipsy(this.generatorGUI.getGIPSYCheckbox().isSelected());
 		
 		// Read the output-folder-path.
 		String outputFolderPath = this.generatorGUI.getOutputFolderjTextField().getText();
@@ -840,6 +853,7 @@ public class GeneratorGUIListener implements ActionListener, ItemListener{
 		
 		progressDialog.setVisible(true);		
 	}
+
 	
 	/**
 	 * Handles the "Info"-button.

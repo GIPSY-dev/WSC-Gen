@@ -9,6 +9,8 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamReader;
 
+import ca.concordia.cse.gipsy.dev.GIPSYService;
+
 
 /**
  * This class is used to parse service-description-files.
@@ -20,7 +22,8 @@ public class ServiceDescriptionParser implements Runnable, Parser{
 	/**
 	 * Contains the services.
 	 */
-	private Vector<ServiceDescription> services;
+//	private Vector<ServiceDescription> services;
+	private Vector<GIPSYService> services;
 		
 	/**
 	 * The input-stream that contains the service-description-file.
@@ -36,7 +39,8 @@ public class ServiceDescriptionParser implements Runnable, Parser{
 	 * Sets some class-members.
 	 */
 	private ServiceDescriptionParser() {
-		this.services = new Vector<ServiceDescription>();
+//		this.services = new Vector<ServiceDescription>();
+		this.services = new Vector<GIPSYService>();
 	}
 	
 	/**
@@ -86,7 +90,8 @@ public class ServiceDescriptionParser implements Runnable, Parser{
 			// Parse the service-description-file-elements.
 			String currentElementName = null;						
 			ParameterType currentParameterType = ParameterType.NONE;
-			ServiceDescription serviceDescription = null;
+//			ServiceDescription serviceDescription = null;
+			GIPSYService serviceDescription = null;
 			
 			while (parser.hasNext())  {
 				int event = parser.next();
@@ -101,7 +106,8 @@ public class ServiceDescriptionParser implements Runnable, Parser{
 							
 							// Get the name of the service.
 							String serviceName = parser.getAttributeValue(null, "name");
-							serviceDescription = new ServiceDescription();
+//							serviceDescription = new ServiceDescription();
+							serviceDescription = new GIPSYService();
 							serviceDescription.setName(serviceName);
 						}
 						else if(currentElementName.equals("inputs")) {
@@ -172,7 +178,8 @@ public class ServiceDescriptionParser implements Runnable, Parser{
 	/**
 	 * @return the services
 	 */
-	public Vector<ServiceDescription> getServiceDescriptions() {
+	@Override
+	public Vector<GIPSYService> getGIPSYServices() {
 		return services;
 	}
 }

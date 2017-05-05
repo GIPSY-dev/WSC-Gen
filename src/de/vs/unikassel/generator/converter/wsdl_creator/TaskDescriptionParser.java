@@ -9,6 +9,8 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamReader;
 
+import ca.concordia.cse.gipsy.dev.GIPSYService;
+
 
 /**
  * This class is used to parse task-description-files.
@@ -20,7 +22,8 @@ public class TaskDescriptionParser implements Runnable, Parser{
 	/**
 	 * The tasks of the task-description-file.
 	 */
-	private Vector<ServiceDescription> tasks;
+//	private Vector<ServiceDescription> tasks;
+	private Vector<GIPSYService> tasks;
 	
 	/**
 	 * The input-stream that contains the service-description-file.
@@ -36,7 +39,8 @@ public class TaskDescriptionParser implements Runnable, Parser{
 	 * Initializes some class-members.
 	 */
 	private TaskDescriptionParser() {
-		this.tasks = new Vector<ServiceDescription>();
+//		this.tasks = new Vector<ServiceDescription>();
+		this.tasks = new Vector<GIPSYService>();
 	}
 	
 	/**
@@ -81,7 +85,8 @@ public class TaskDescriptionParser implements Runnable, Parser{
 			XMLStreamReader parser = factory.createXMLStreamReader(this.taskDescriptionFileInputStream);
 			
 			// Parse the task-description-file-elements.
-			ServiceDescription task = null;
+//			ServiceDescription task = null;
+			GIPSYService task = null;
 			String currentElementName = null;
 			ParameterType parameterType = ParameterType.NONE;
 			int countTasks = 0;
@@ -96,7 +101,8 @@ public class TaskDescriptionParser implements Runnable, Parser{
 						currentElementName = parser.getLocalName();
 						
 						if(currentElementName.equals("task")) {
-							task = new ServiceDescription();
+//							task = new ServiceDescription();
+							task = new GIPSYService();
 							task.setName("Task"+countTasks);
 						}
 						else if(currentElementName.equals("provided")) {
@@ -170,7 +176,8 @@ public class TaskDescriptionParser implements Runnable, Parser{
 	/**
 	 * @return the tasks
 	 */
-	public Vector<ServiceDescription> getServiceDescriptions() {
+	@Override
+	public Vector<GIPSYService> getGIPSYServices() {
 		return tasks;
 	}
 }

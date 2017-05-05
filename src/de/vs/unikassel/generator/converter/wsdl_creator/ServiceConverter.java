@@ -12,7 +12,8 @@ public class ServiceConverter implements Runnable{
 	/**
 	 * The WSDL_Creator that creates the WSDL-document.
 	 */
-	private WSDL_Creator wsdlCreator;
+//	private WSDL_Creator wsdlCreator;
+	private GIPSYwsdl_creator wsdlCreator;
 	
 	/**
 	 * Creates a new ServiceConverter with the given service-description-file.
@@ -20,7 +21,8 @@ public class ServiceConverter implements Runnable{
 	 */
 	public ServiceConverter(String serviceDescriptionFilePath) {		
 		ServiceDescriptionParser parser = new ServiceDescriptionParser(serviceDescriptionFilePath);
-		this.wsdlCreator = new WSDL_Creator(parser);
+//		this.wsdlCreator = new WSDL_Creator(parser);
+		this.wsdlCreator = new GIPSYwsdl_creator(parser);
 	}
 	
 	/**
@@ -29,7 +31,8 @@ public class ServiceConverter implements Runnable{
 	 */
 	public ServiceConverter(InputStream serviceDescriptionDocument) {
 		ServiceDescriptionParser parser = new ServiceDescriptionParser(serviceDescriptionDocument);
-		this.wsdlCreator = new WSDL_Creator(parser);
+//		this.wsdlCreator = new WSDL_Creator(parser);
+		this.wsdlCreator = new GIPSYwsdl_creator(parser);
 	}
 	
 	/**

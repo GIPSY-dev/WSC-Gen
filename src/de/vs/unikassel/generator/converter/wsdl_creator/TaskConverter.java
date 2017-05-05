@@ -12,7 +12,8 @@ public class TaskConverter implements Runnable{
 	/**
 	 * The WSDL_Creator that creates the WSDL-document.
 	 */
-	private WSDL_Creator wsdlCreator;
+//	private WSDL_Creator wsdlCreator;
+	private GIPSYwsdl_creator wsdlCreator;
 	
 	/**
 	 * Creates a new TaskConverter with the given task-description-file.
@@ -20,7 +21,8 @@ public class TaskConverter implements Runnable{
 	 */
 	public TaskConverter(String taskDescriptionFilePath) {
 		TaskDescriptionParser parser = new TaskDescriptionParser(taskDescriptionFilePath);
-		this.wsdlCreator = new WSDL_Creator(parser);
+//		this.wsdlCreator = new WSDL_Creator(parser);
+		this.wsdlCreator = new GIPSYwsdl_creator(parser);
 	}
 	
 	/**
@@ -29,7 +31,8 @@ public class TaskConverter implements Runnable{
 	 */
 	public TaskConverter(InputStream taskDescriptionDocument) {
 		TaskDescriptionParser parser = new TaskDescriptionParser(taskDescriptionDocument);
-		this.wsdlCreator = new WSDL_Creator(parser);
+//		this.wsdlCreator = new WSDL_Creator(parser);
+		this.wsdlCreator = new GIPSYwsdl_creator(parser);
 	}
 	
 	/**

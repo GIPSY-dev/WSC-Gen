@@ -32,10 +32,10 @@ import test.org.sigoa.wsc.c2008.generator.Concept;
 import test.org.sigoa.wsc.c2008.generator.Problem;
 import test.org.sigoa.wsc.c2008.generator.Rand;
 import de.vs.unikassel.generator.converter.bpel_creator.BPEL_Creator;
+import de.vs.unikassel.generator.converter.gipsy.wsla_creator.WSLASingleton;
 import de.vs.unikassel.generator.converter.owl_creator.OWL_Creator;
 import de.vs.unikassel.generator.converter.wsdl_creator.ServiceConverter;
 import de.vs.unikassel.generator.converter.wsdl_creator.TaskConverter;
-import de.vs.unikassel.generator.converter.wsla_creator.WSLASingleton;
 import de.vs.unikassel.generator.gui.GeneratorGUI;
 import de.vs.unikassel.generator.gui.ProgressDialog;
 

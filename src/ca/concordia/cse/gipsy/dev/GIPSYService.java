@@ -6,7 +6,7 @@ import de.vs.unikassel.generator.converter.wsdl_creator.ServiceDescription;
 public class GIPSYService extends ServiceDescription {
 
 	/**
-	 * The name of the service.
+	 * The name of the service.a
 	 */
 
 	private String name;

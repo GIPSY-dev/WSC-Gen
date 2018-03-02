@@ -2,10 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Web Service Challenge Sources"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Web Service Challenge"/>
-	<classpathentry kind="lib" path="C:/SETEK Framework/Web Service Challenge/lib/jdom.jar"/>
-	<classpathentry kind="lib" path="C:/SETEK Framework/Web Service Challenge/lib/xalan-2.7.0.jar"/>
-	<classpathentry kind="lib" path="C:/SETEK Framework/Web Service Challenge/lib/xercesImpl-2.8.1.jar"/>
+	<classpathentry kind="lib" path="lib/jdom.jar"/>
+	<classpathentry kind="lib" path="lib/WebServiceChallengeCompetition.jar"/>
+	<classpathentry kind="lib" path="lib/WebServiceChallengeGeneratorUI.jar"/>
+	<classpathentry kind="lib" path="lib/WebServiceChallengeSources.jar"/>
+	<classpathentry kind="lib" path="lib/xalan-2.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/xercesImpl-2.8.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

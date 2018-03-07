@@ -490,7 +490,7 @@ public class Generator {
 	private boolean overrideFiles = true;
 	private boolean ignoreMinimum = false;
 	
-	Generator() {
+	public Generator() {
         
 	}
 	

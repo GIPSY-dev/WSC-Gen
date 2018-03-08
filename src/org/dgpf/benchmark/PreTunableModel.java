@@ -609,7 +609,7 @@ public class PreTunableModel {
   // }
   //
   // if (index > this.functionalObjectiveFunctionsCount)
-  // return -1;// TODO anstädige fehlermeldung oder anderen wert?
+  // return -1;// TODO anstdige fehlermeldung oder anderen wert?
   //
   // int fitness;
   //

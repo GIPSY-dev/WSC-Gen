@@ -151,8 +151,8 @@ public final class TextUtils {
 
   /**
    * Append the time stored in <code>gc</code> to the given appendable.
-   * The SFC-time absolute format is <code>yyyy-mm-dd-hh:mm:ss_µµµ</code>,
-   * the relative time format is <code>dd-hh:mm:ss_µµµ</code>.
+   * The SFC-time absolute format is <code>yyyy-mm-dd-hh:mm:ss_</code>,
+   * the relative time format is <code>dd-hh:mm:ss_</code>.
    * 
    * @param gc
    *          The calendar.
@@ -222,8 +222,8 @@ public final class TextUtils {
 
   /**
    * Create a string representation of a time expression. The SFC-time
-   * absolute format is <code>yyyy-mm-dd-hh:mm:ss_µµµ</code>, the
-   * relative time format is <code>dd-hh:mm:ss_µµµ</code>.
+   * absolute format is <code>yyyy-mm-dd-hh:mm:ss_</code>, the
+   * relative time format is <code>dd-hh:mm:ss_</code>.
    * 
    * @param gc
    *          The calendar.
@@ -305,8 +305,8 @@ public final class TextUtils {
 
   /**
    * Append the time stored in <code>gc</code> to the given appendable.
-   * The SFC-time absolute format is <code>yyyy-mm-dd-hh:mm:ss_µµµ</code>,
-   * the relative time format is <code>dd-hh:mm:ss_µµµ</code>.
+   * The SFC-time absolute format is <code>yyyy-mm-dd-hh:mm:ss_</code>,
+   * the relative time format is <code>dd-hh:mm:ss_</code>.
    * 
    * @param time
    *          The time constant. This is a value of the type
@@ -351,8 +351,8 @@ public final class TextUtils {
 
   /**
    * Create a string representation of a time expression. The SFC-time
-   * absolute format is <code>yyyy-mm-dd-hh:mm:ss_µµµ</code>, the
-   * relative time format is <code>dd-hh:mm:ss_µµµ</code>.
+   * absolute format is <code>yyyy-mm-dd-hh:mm:ss_</code>, the
+   * relative time format is <code>dd-hh:mm:ss_</code>.
    * 
    * @param time
    *          The time constant. This is a value of the type

@@ -8,12 +8,12 @@ import org.dgpf.benchmark.TunableModel;
 public class FitnessCalculator {
 
   /**
-   * Phenotype länge
+   * Phenotype lnge
    */
   private final static int PS = 80;
 
   /**
-   * neutralitätslevel
+   * neutralittslevel
    */
   private final static int N = 8;
 

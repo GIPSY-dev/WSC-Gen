@@ -313,7 +313,7 @@ class StatisticInfoBase extends Textable implements IStatisticInfo,
   private static final char[] SUM = "sum x :".toCharArray(); //$NON-NLS-1$
 
   /** the sum of squares */
-  private static final char[] SUM_SQR = "sum x²:".toCharArray(); //$NON-NLS-1$
+  private static final char[] SUM_SQR = "sum x :".toCharArray(); //$NON-NLS-1$
 
   /** the average */
   private static final char[] AVG = "avg   :".toCharArray(); //$NON-NLS-1$

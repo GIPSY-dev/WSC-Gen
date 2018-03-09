@@ -87,6 +87,7 @@ public class AgreementNetworkProvider<MT extends Serializable> extends
    * @param scenarioCount
    *          the number of scenarios
    */
+  /*
   @SuppressWarnings("unchecked")
   public AgreementNetworkProvider(
       final IVirtualMachineNetworkParameters<MT> parameters,
@@ -95,7 +96,7 @@ public class AgreementNetworkProvider<MT extends Serializable> extends
         ((Class<? extends AgreementNetwork<MT, ?>>) (AgreementNetwork.class)),
         parameters, randomizeScenarios, scenarioCount);
   }
-
+*/
   /**
    * Create a new instance of this simulator.
    * 

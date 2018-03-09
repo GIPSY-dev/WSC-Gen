@@ -127,7 +127,7 @@ public class Main {
     if(KnowledgeBase.LOW_MEM)  WSCService.doGC();
     else initialize();
 
-    //circumvention of the SPONTANEOUS RULE CHANGES #+*@@@°!!
+    //circumvention of the SPONTANEOUS RULE CHANGES #+*@@@!!
     KnowledgeBase.LOW_MEM = true;
 
     System.out.println("starting service at port " + port); //$NON-NLS-1$

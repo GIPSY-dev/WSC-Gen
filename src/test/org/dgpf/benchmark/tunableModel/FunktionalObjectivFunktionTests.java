@@ -88,7 +88,7 @@ public class FunktionalObjectivFunktionTests {
       if (ff != fitnessValue[i]) {
         c = false;
         System.out
-            .println("Der Fitnesswert beträgt " + ff + " anstatt von " + fitnessValue[i]); //$NON-NLS-1$//$NON-NLS-2$
+            .println("Der Fitnesswert betrgt " + ff + " anstatt von " + fitnessValue[i]); //$NON-NLS-1$//$NON-NLS-2$
       } else
         c = true;
 

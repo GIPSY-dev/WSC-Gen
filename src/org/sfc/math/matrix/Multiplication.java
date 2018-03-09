@@ -90,7 +90,7 @@ package org.sfc.math.matrix;
  * 
  * Another important issue in this file is the power function, which allows
  * to raise matrices quickly to positive powers using the quick power
- * algorithm of Legendre (Théorie des nombres, 1798). Also, many arithmetic
+ * algorithm of Legendre (Thorie des nombres, 1798). Also, many arithmetic
  * and trigonometric operations on matrices are done here by emulating them
  * with their appropriate Taylor Serieses.
  */

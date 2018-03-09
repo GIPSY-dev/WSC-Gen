@@ -54,7 +54,7 @@ import test.org.dgpf.election.rbgp.ElectionRBGPTestSeries;
  * 
  * @author Thomas Weise
  */
-public class AgreementERBGPTestSeries extends AgreementTestSeries {
+public abstract class AgreementERBGPTestSeries extends AgreementTestSeries {
   /**
    * the serial version uid
    */
@@ -123,13 +123,14 @@ public class AgreementERBGPTestSeries extends AgreementTestSeries {
    *          ranomized
    * @return the simulation provider needed
    */
+  /*
   @Override
   @SuppressWarnings("unchecked")
   protected NetworkProvider<?> doCreateSimulationProvider(final int sc,
       final boolean randomized) {
     return new AgreementNetworkProvider(PARAMETERS, randomized, sc);
   }
-
+*/
   /**
    * create an agreement objective
    * 
@@ -193,6 +194,6 @@ public class AgreementERBGPTestSeries extends AgreementTestSeries {
    *          the command line arguments
    */
   public static void main(String[] args) {
-    new AgreementERBGPTestSeries("").start(); //$NON-NLS-1$
+    //new AgreementERBGPTestSeries("").start(); //$NON-NLS-1$
   }
 }

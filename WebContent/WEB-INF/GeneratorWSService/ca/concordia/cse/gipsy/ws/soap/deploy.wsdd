@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from GeneratorWSService WSDL service -->
+
+  <service name="GeneratorWS" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.ws.gipsy.cse.concordia.ca"/>
+      <parameter name="wsdlServiceElement" value="GeneratorWSService"/>
+      <parameter name="schemaQualified" value="http://soap.ws.gipsy.cse.concordia.ca"/>
+      <parameter name="wsdlServicePort" value="GeneratorWS"/>
+      <parameter name="className" value="ca.concordia.cse.gipsy.ws.soap.GeneratorWS"/>
+      <parameter name="wsdlPortType" value="GeneratorWS"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://soap.ws.gipsy.cse.concordia.ca" name="runGenerator" qname="operNS:runGenerator" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="runGenerator"/>
+
+  </service>
+</deployment>

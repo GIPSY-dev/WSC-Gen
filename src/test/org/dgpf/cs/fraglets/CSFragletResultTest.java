@@ -64,6 +64,8 @@ public class CSFragletResultTest {
    * @param args
    *          the command line arguments
    */
+  
+  /*
   public static final void main(String[] args) {
     ISuccessFilter<Serializable> f;
     CSFragletTestSeries x;
@@ -81,4 +83,5 @@ public class CSFragletResultTest {
     System.out.println();
     System.out.println(f.isOverfitted(S));
   }
+  */
 }

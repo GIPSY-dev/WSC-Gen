@@ -53,7 +53,7 @@ import test.org.dgpf.election.rbgp.ElectionRBGPTestSeries;
  * 
  * @author Thomas Weise
  */
-public class CSeRBGPTestSeries extends CSTestSeries {
+public abstract class CSeRBGPTestSeries extends CSTestSeries {
   /**
    * the serial version uid
    */
@@ -120,13 +120,14 @@ public class CSeRBGPTestSeries extends CSTestSeries {
    *          ranomized
    * @return the simulation provider needed
    */
+  /*
   @Override
   @SuppressWarnings("unchecked")
   protected NetworkProvider<?> doCreateSimulationProvider(final int sc,
       final boolean randomized) {
     return new CSNetworkProvider(PARAMETERS, randomized, sc, BASE_CS_TIME);
   }
-
+*/
   /**
    * create the embryogeny
    * 
@@ -176,7 +177,10 @@ public class CSeRBGPTestSeries extends CSTestSeries {
    * @param args
    *          the command line arguments
    */
+  
+  /*
   public static void main(String[] args) {
     new CSeRBGPTestSeries("").start(); //$NON-NLS-1$
   }
+  */
 }

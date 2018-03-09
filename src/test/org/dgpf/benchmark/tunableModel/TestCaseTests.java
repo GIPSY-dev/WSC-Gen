@@ -95,7 +95,7 @@ public class TestCaseTests {
         if( testcases[j].length != phenotypeSize[i] )
         {
           c = false;
-          System.out.println( "Die länge des Testcases ist " + testcases[j].length  //$NON-NLS-1$
+          System.out.println( "Die lnge des Testcases ist " + testcases[j].length  //$NON-NLS-1$
               + " statt " + phenotypeSize[i] ); //$NON-NLS-1$
         }
         

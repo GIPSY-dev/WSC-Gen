@@ -49,6 +49,7 @@ public class AllCSTestSeries {
    * @param args
    *          the command line arguments
    */
+  /*
   public static void main(String[] args) {
     MultiTestSeries mts;
 
@@ -91,4 +92,5 @@ public class AllCSTestSeries {
 
     mts.start();
   }
+    */
 }

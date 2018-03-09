@@ -21,7 +21,7 @@
 	<classpathentry kind="lib" path="src/lib/WebServiceChallengeSources.jar"/>
 	<classpathentry kind="lib" path="src/lib/xalan-2.7.0.jar"/>
 	<classpathentry kind="lib" path="src/lib/xercesImpl-2.8.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/MGobran/Google Drive/COMP/soen487/git_eclipse/soen487-w18-team12/src/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="output" path="bin"/>

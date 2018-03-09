@@ -54,7 +54,7 @@ import test.org.dgpf.cs.rbgp.CSRBGPTestSeries;
  * 
  * @author Thomas Weise
  */
-public class CSFragletTestSeries extends CSTestSeries {
+public abstract class CSFragletTestSeries extends CSTestSeries {
   /**
    * the serial version uid
    */
@@ -143,13 +143,14 @@ public class CSFragletTestSeries extends CSTestSeries {
    *          ranomized
    * @return the simulation provider needed
    */
+  /*
   @Override
   @SuppressWarnings("unchecked")
   protected NetworkProvider<?> doCreateSimulationProvider(final int sc,
       final boolean randomized) {
     return new CSNetworkProvider(PARAMETERS, randomized, sc, BASE_CS_TIME);
   }
-
+*/
   /**
    * create the embryogeny
    * 
@@ -196,7 +197,9 @@ public class CSFragletTestSeries extends CSTestSeries {
    * @param args
    *          the command line arguments
    */
+  /*
   public static void main(String[] args) {
     new CSFragletTestSeries("").start(); //$NON-NLS-1$
   }
+  */
 }

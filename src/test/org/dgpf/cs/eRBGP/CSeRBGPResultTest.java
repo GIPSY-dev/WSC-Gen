@@ -198,6 +198,8 @@ public class CSeRBGPResultTest {
    * @param args
    *          the command line arguments
    */
+  
+  /*
   public static final void main(String[] args) {
     ISuccessFilter<Serializable> f;
     CSeRBGPTestSeries x;
@@ -211,4 +213,5 @@ public class CSeRBGPResultTest {
     System.out.println();
     System.out.println(f.isOverfitted(S));
   }
+  */
 }

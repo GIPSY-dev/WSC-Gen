@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rest Client for WS-Gen</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+    <body>
+        <script type="text/javascript">
+            function makeRequest(verb, url, body, toCallOnSuccess) {
+                document.getElementById("error").innerHTML = "";
+                document.getElementById("status").innerHTML = "";
+
+                const requester = new XMLHttpRequest();
+
+                requester.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        toCallOnSuccess(this.responseText);
+                    } else if (this.status == 404) {
+                        document.getElementById("error").innerHTML = "The file you have requested hasn't been generated yet. Please generate them first.";
+                    } else {
+                        document.getElementById("error").innerHTML = "An error happened during the request. HTTP Code: " + this.status;
+                    }
+                };
+
+                if (verb == 'PUT') {
+                    requester.setRequestHeader("Content-type", "application/json");
+                }
+
+                requester.open(verb, url, true);
+                requester.send(body ? body : null);
+            }
+
+            function generateFiles() {
+                const parameters = {
+                    param1: document.getElementById("param1").innerHTML,
+                    param2: document.getElementById("param2").innerHTML,
+                    param3: document.getElementById("param3").innerHTML
+                };
+
+                makeRequest('PUT', 'http://localhost/gen', parameters, function() {
+                    document.getElementById("status").innerHTML = "Successfully sent the generation request to the server.";
+                });
+            }
+
+            function getWSDL() {
+                makeRequest('GET', undefined, 'http://localhost/wsdl', function(responseText) {
+                    window.open(responseText, '_blank');
+                });
+            }
+
+            function getWSLA() {
+                makeRequest('GET', undefined, 'http://localhost/wsla', function(responseText) {
+                    window.open(responseText, '_blank');
+                });
+            }
+
+            function getOWL() {
+                makeRequest('GET', undefined, 'http://localhost/owl', function(responseText) {
+                    window.open(responseText, '_blank');
+                });
+            }
+
+            function getBPEL() {
+                makeRequest('GET', undefined, 'http://localhost/bpel', function(responseText) {
+                    window.open(responseText, '_blank');
+                });
+            }
+        </script>
+
+        <div style="text-align: center;">
+            <h1>Javascript REST Client for WS-Gen</h1>
+        </div>
+        <div>
+            <h3>Parameters for the Generator</h3>
+            <p id="error" style="color: red;"></p>
+            <p id="status"></p>
+            <input id="param1" type="text"/>
+            <input id="param2" type="text"/>
+            <input id="param3" type="text"/>
+            <button type="button" onclick="generateFiles()">Generate Files</button>
+            <div>
+                <button type="button" onclick="getWSDL()">Download WSDL</button>
+                <button type="button" onclick="getWSLA()">Download WSLA</button>
+                <button type="button" onclick="getOWL()">Download OWL</button>
+                <button type="button" onclick="getBPEL()">Download BPEL</button>
+            </div>
+        </div>
+    </body>
+</html>

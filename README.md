@@ -6,6 +6,10 @@ improve planning graph algorithm.
 
 [WSC '09 Official Website](https://web.archive.org/web/20131115023242/http://ws-challenge.georgetown.edu/wsc09/index.html)
 
+## Instructions
+
+Clone and import it to `Eclipse` and use `Existing Projects into Workspace` and then configure the build path and add required jars to the class path.
+`de.vs.unikassel.genrator.gui.GeneratorGUI` is the Java class that instantiates the GUI for WS-Gen.
 
 ## How do I give comments/suggestions/questions?
 

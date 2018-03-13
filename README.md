@@ -10,3 +10,7 @@ improve planning graph algorithm.
 h1. How do I give comments/suggestions/questions?
 
 Please send me a email at: ludeng.zhao {at} Gmail.com
+
+h2. What this branch provides in contrast to the others?
+
+This branch currently provides a manual hardcoded extension to the WSC-Generator in terms of extending the SLA's to include web service contraints and their effects. 

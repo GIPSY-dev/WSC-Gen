@@ -29,9 +29,8 @@ public class Main {
 		g.start();
 
 		if(g.getErrorMessages() != null){
-			for(int i=0; i< g.getErrorMessages().size(); i++){
-				System.out.println(g.getErrorMessages().get(i));
-			}
+				System.out.println(g.getErrorMessages());
+			
 		}
 		
 	}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="CompositionSystem">
+      <implementation-class>de.vs.unikassel.query.server.CompositionSystemImpl</implementation-class>
+    </service>
+    <service name="CallbackService">
+      <implementation-class>de.vs.unikassel.query.client.callback_interface.ClientCallbackInterface</implementation-class>
+    </service>
+    <service name="GeneratorWS">
+      <implementation-class>ca.concordia.cse.gipsy.ws.soap.GeneratorWS</implementation-class>
+    </service>
+  </services>
+  <clients/>
+  <jsr109>true</jsr109>
+</jax-ws>

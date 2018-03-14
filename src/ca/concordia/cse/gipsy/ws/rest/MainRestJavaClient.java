@@ -1,5 +1,6 @@
-package ca.concordia.cse.gipsy.ws.rest.RestJavaclient;
+package ca.concordia.cse.gipsy.ws.rest;
 
+import ca.concordia.cse.gipsy.ws.rest.GeneratorConfiguration;
 import java.util.Scanner;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Scanner;
  */
 public class MainRestJavaClient {
     public static void main(String[] args) {
-        RestJavaClient client = new RestJavaClient("");
+        RestJavaClient client = new RestJavaClient("http://localhost:8080/PM2Part2/webresources/restGenerator");
        
         Scanner scan = new Scanner(System.in);
         
@@ -53,11 +54,24 @@ public class MainRestJavaClient {
     }
     
     private static GeneratorConfiguration getGenConfiguration(Scanner scan) {
-        System.out.println("Value for parameter 1:");
-        String param1 = scan.nextLine();
-        System.out.println("Value for parameter 2:");
-        String param2 = scan.nextLine();
+        GeneratorConfiguration config = new GeneratorConfiguration();
         
-        return new GeneratorConfiguration(param1, param2);
+        System.out.println("Value for number of concepts:");
+        config.setNumberOfConcepts(scan.nextLine());
+        
+        System.out.println("Value for number of services:");
+        config.setNumberOfServices(scan.nextLine());
+        
+        System.out.println("Value for number of services:");
+        boolean isSolvable = scan.nextBoolean();
+        
+        config.setSolvableProblem(isSolvable);
+        
+        if (isSolvable) {
+            System.out.println("Value for solutions list (separate with ,):");
+            config.setSolutionsList(scan.nextLine());
+        }
+        
+        return config;
     }
 }

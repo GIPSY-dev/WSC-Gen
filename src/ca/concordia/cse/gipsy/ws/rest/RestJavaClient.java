@@ -1,5 +1,6 @@
-package ca.concordia.cse.gipsy.ws.rest.RestJavaclient;
+package ca.concordia.cse.gipsy.ws.rest;
 
+import ca.concordia.cse.gipsy.ws.rest.GeneratorConfiguration;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -51,7 +52,7 @@ public class RestJavaClient {
     private void getFile(String fileType) {
         WebTarget resource = restClient.target(this.urlRestApi + "/" + fileType);
         
-        Response answer = resource.request("application/" + fileType)
+        Response answer = resource.request("text/plain")
                 .get();
         
         if (answer.getStatus() == Response.Status.OK.getStatusCode()) {

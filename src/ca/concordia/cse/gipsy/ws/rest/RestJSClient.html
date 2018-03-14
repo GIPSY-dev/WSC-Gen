@@ -14,7 +14,7 @@
 
                 requester.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        toCallOnSuccess(this.responseText);
+                        toCallOnSuccess();
                     } else if (this.status == 404) {
                         document.getElementById("error").innerHTML = "The file you have requested hasn't been generated yet. Please generate them first.";
                     } else {
@@ -22,19 +22,34 @@
                     }
                 };
 
+                requester.open(verb, url, true);
+                
                 if (verb == 'PUT') {
                     requester.setRequestHeader("Content-type", "application/json");
                 }
-
-                requester.open(verb, url, true);
-                requester.send(body ? body : null);
+                
+                requester.send(body ? JSON.stringify(body) : null);
             }
 
             function generateFiles() {
+                if (document.getElementById("solutionListDepths").innerHTML) {
+                    const depths = document.getElementById("solutionListDepths").innerHTML.split(',');
+                    let solutionsListParsed = [];
+                    
+                    for (let i = 0; i < depths.length; i++) {
+                        if (!isNaN(parseInt(depths[i]))) {
+                            solutionsListParsed[i] = parseInt(depths[i]);
+                        } else {
+                            solutionsListParsed[i] = 10;
+                        }
+                    }
+                }
+                
                 const parameters = {
-                    param1: document.getElementById("param1").innerHTML,
-                    param2: document.getElementById("param2").innerHTML,
-                    param3: document.getElementById("param3").innerHTML
+                    numberOfConcepts: document.getElementById("numberOfConcepts").innerHTML || 10000,
+                    numberOfServices: document.getElementById("numberOfServices").innerHTML || 4000,
+                    solvableProblem: document.getElementById("isSolvable").innerHTML == 'true' ? true : false,
+                    solutionsList: solutionsListParsed
                 };
 
                 makeRequest('PUT', 'http://localhost/gen', parameters, function() {
@@ -43,27 +58,36 @@
             }
 
             function getWSDL() {
-                makeRequest('GET', undefined, 'http://localhost/wsdl', function(responseText) {
-                    window.open(responseText, '_blank');
+                makeRequest('GET', undefined, 'http://localhost/wsdl', function() {
+                    window.open('http://localhost/wsdl', '_blank');
                 });
             }
 
             function getWSLA() {
-                makeRequest('GET', undefined, 'http://localhost/wsla', function(responseText) {
-                    window.open(responseText, '_blank');
+                makeRequest('GET', undefined, 'http://localhost/wsla', function() {
+                    window.open('http://localhost/wsla', '_blank');
                 });
             }
 
             function getOWL() {
-                makeRequest('GET', undefined, 'http://localhost/owl', function(responseText) {
-                    window.open(responseText, '_blank');
+                makeRequest('GET', undefined, 'http://localhost/owl', function() {
+                    window.open('http://localhost/owl', '_blank');
                 });
             }
 
             function getBPEL() {
-                makeRequest('GET', undefined, 'http://localhost/bpel', function(responseText) {
-                    window.open(responseText, '_blank');
+                makeRequest('GET', undefined, 'http://localhost/bpel', function() {
+                    window.open('http://localhost/bpel', '_blank');
                 });
+            }
+            
+            function changedValue() {
+                if (document.getElementById("isSolvable").value == 'true') {
+                    document.getElementById("solutionListDepths").style.display = 'block';
+                } else {
+                    document.getElementById("solutionListDepths").style.display = 'none';
+                    document.getElementById("solutionListDepths").value = '';
+                } 
             }
         </script>
 
@@ -74,9 +98,10 @@
             <h3>Parameters for the Generator</h3>
             <p id="error" style="color: red;"></p>
             <p id="status"></p>
-            <input id="param1" type="text"/>
-            <input id="param2" type="text"/>
-            <input id="param3" type="text"/>
+            <input id="numberOfConcepts" type="number"/>
+            <input id="numberOfServices" type="number"/>
+            <input id="isSolvable" type="text" onkeyup="changedValue"/>
+            <input id="solutionListDepths" style="display: none;" type="text"/>
             <button type="button" onclick="generateFiles()">Generate Files</button>
             <div>
                 <button type="button" onclick="getWSDL()">Download WSDL</button>

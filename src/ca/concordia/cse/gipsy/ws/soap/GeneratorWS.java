@@ -1,17 +1,31 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ca.concordia.cse.gipsy.ws.soap;
 
-import java.lang.reflect.InvocationTargetException;
+import javax.jws.WebService;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
 
-public class Main {
+/**
+ *
+ * @author MGobran
+ */
+@WebService(serviceName = "GeneratorWS")
+public class GeneratorWS {
 
-	public static void main(String[] args) throws Exception {
-
-		Generator g = new Generator();
+    /**
+     * This is a sample web service operation
+     */
+    @WebMethod(operationName = "runGenerator")
+    public void runGenerator() throws Exception {
+        	Generator g = new Generator();
 		
 		// need first an output folder.
 		g.browseOutputFolder();
-		
-
+                
 		// ------------Example----------------------------
 		// --------- if files already exist in folder --------
 		// user input a name for bpelFileName
@@ -34,6 +48,5 @@ public class Main {
 			}
 		}
 		
-	}
-
+    }
 }

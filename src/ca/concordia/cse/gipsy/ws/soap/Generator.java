@@ -29,8 +29,8 @@ public class Generator {
 	private int[] solutionDepths = null;                             
 	private int[] solutionsList = null;                      		
 	private int completeSolutionDepth = -1;                          
-	private int minNumberConcepts = -1;  
-	private String outputFolder = null;
+	private int minNumberConcepts = -1;                              
+	private File outputFolder = null;
 	private String bpelFileName = null;
 	private String owlFileName = null;
 	private String taskWSDLFileName = null;
@@ -38,22 +38,22 @@ public class Generator {
 	private String serviceWSDLFileName = null;
 	private boolean generateIntermediateFiles = false;
 	private TaskGenerator taskGenerator = null;
-	private String errorMessages = null;
+	private ArrayList<String> errorMessages = null;
 	private boolean overrideFiles = true;
 	private boolean ignoreMinimum = false;
-
+	
 	public Generator() {
-
+        
 	}
-
-
+	
+	
 	/**
 	 * Call this function to set default values for the Generator. 
 	 * @see BrowseOutputFolder() also - need to be called
 	 * @throws Exception
 	 */
 	public void setDefault() throws Exception{
-
+		
 		setNumberOfConcepts(10000);
 		setNumberOfServices(4000);
 		setSolvableProblem(true);
@@ -70,20 +70,19 @@ public class Generator {
 		setWSLAFileName("Servicelevelagreements");
 		setGenerateIntermediateFiles(false);
 	}
-
+	
 	/**
 	 * Called when all the elements for the generator is setup
 	 * @see BrowseOutputFolder() also - this function need to be called or setup before start()
 	 * @throws Exception
 	 */
 	public void start() throws Exception{
-		File outputFolderPath = new File(this.getOutputFolder());
 		taskGenerator = new TaskGenerator(getNumberOfConcepts(), getSolvableProblem(), getSolutionsList(), getNumberOfServices(),
-				outputFolderPath, getBpelFileName(), getServiceWSDLFileName(), getTaskWSDLFileName(), getOwlFileName(), getWSLAFileName(), getGenerateIntermediateFiles());
+				getOutputFolder(), getBpelFileName(), getServiceWSDLFileName(), getTaskWSDLFileName(), getOwlFileName(), getWSLAFileName(), getGenerateIntermediateFiles());
 		Thread taskGeneratorThread = new Thread((Runnable) taskGenerator);
 		taskGeneratorThread.start();
 	}
-
+	
 	/**
 	 * Default is 10 000 - This is the number of concepts the user wants
 	 * 
@@ -93,7 +92,7 @@ public class Generator {
 	public void setNumberOfConcepts(int numberOfConcepts) {
 		if(numberOfConcepts <= 0) {
 			// --- > exception could be replaced with an error message in JSP
-			errorMessages+=("\n\tPlease enter a number greater than 0 for the number of concepts");
+			errorMessages.add("Please enter a number greater than 0 for the number of concepts");
 		}else{
 			this.numberOfConcepts = numberOfConcepts;
 		}
@@ -104,9 +103,9 @@ public class Generator {
 	 * @return numberOfConcepts
 	 */
 	public int getNumberOfConcepts(){
-		return numberOfConcepts;
+			return numberOfConcepts;
 	}
-
+	
 	/**
 	 * Setter for number of services
 	 * 
@@ -115,12 +114,12 @@ public class Generator {
 	 */
 	public void setNumberOfServices(int numberOfServices){
 		if(numberOfServices <=0){
-			errorMessages+=("\n\tPlease enter a number greater than 0 for number of services");
+			errorMessages.add("Please enter a number greater than 0 for number of services");
 		}else{
 			this.numberOfServices = numberOfServices;
 		}
 	}
-
+	
 	/**
 	 * Getter for numberOfServices
 	 * @return
@@ -128,7 +127,7 @@ public class Generator {
 	public int getNumberOfServices(){
 		return numberOfServices;
 	}
-
+	
 	/**
 	 * Setter for solvableProblem
 	 * 
@@ -138,7 +137,7 @@ public class Generator {
 	public void setSolvableProblem( boolean solvableProblem){
 		this.solvableProblem = solvableProblem;
 	}
-
+	
 	/**
 	 *  Getter for solvableProblem
 	 * @return solvableProblem
@@ -146,14 +145,14 @@ public class Generator {
 	public boolean getSolvableProblem(){
 		return solvableProblem;
 	}
-
+	
 	/**
 	 * Getter for solutionsList
 	 * @return solutionsList is an array of integer that represent solutionDepths asked by the user
 	 */
 	public int[] getSolutionsList() {
 		if(getSolvableProblem() == false){
-			errorMessages+=("\n\tGet Solutions list available only if solvable problem set to True");
+			errorMessages.add("Get Solutions list available only if solvable problem set to True");
 		}
 		if (solutionsList == null) {
 			solutionsList = new int[1];
@@ -162,7 +161,7 @@ public class Generator {
 
 		return solutionsList;
 	}
-
+	
 	/**
 	 * Handle the "Add solutions" button
 	 * 
@@ -172,11 +171,11 @@ public class Generator {
 	public void setSolutionsList(int[] depthNumbers ) {
 		int[] solutionsList;
 		if(getSolvableProblem() == false){
-			errorMessages+=("\n\tSet Solutions list available only if solvable problem set to True");
+			errorMessages.add("Set Solutions list available only if solvable problem set to True");
 		}
-
+		
 		if(depthNumbers.length < 1){
-			errorMessages+=("\n\tPlease enter a number bigger than 1 for a solution");
+			errorMessages.add("Please enter a number bigger than 1 for a solution");
 		}
 		solutionsList = new int[depthNumbers.length];
 		for(int i=0; i < depthNumbers.length; i++){
@@ -184,7 +183,7 @@ public class Generator {
 		}
 		this.solutionsList = solutionsList;
 	}
-
+	
 	/**
 	 * Total solutionDepth number
 	 * 
@@ -193,21 +192,21 @@ public class Generator {
 	public int getCompleteSolutionDepth(){
 		return this.completeSolutionDepth;
 	}
-
+	
 	/**
 	 * Sum the total solutionDepthList indexes to calculate the completeSolutionDepth
 	 */
 	public void setCompleteSolutionDepth(){
 		int completeSolutionDepth = 0;
 		if(getSolvableProblem() == false){
-			errorMessages+=("\n\tComplete solution depth available only if solvable problem set to True");
+			errorMessages.add("Complete solution depth available only if solvable problem set to True");
 		}
 		for(int i=0; i < getSolutionsList().length; i++){
 			completeSolutionDepth += getSolutionsList()[i];
 		}
 		this.completeSolutionDepth = completeSolutionDepth;
 	}
-
+	
 	/**
 	 * Setter for Gipsy
 	 * @param _gipsy
@@ -215,7 +214,7 @@ public class Generator {
 	public void setGipsy(boolean _gipsy){
 		gipsy = _gipsy;
 	}
-
+	
 	/**
 	 * Getter for Gipsy
 	 * @return gipsy
@@ -223,34 +222,34 @@ public class Generator {
 	public boolean getGispy(){
 		return gipsy;
 	}
-
+	
 	/**
 	 * Set the folder path to save the files
 	 * @param outputFolderPath
 	 */
 	public void setOutputFolder(String outputFolderPath) {
 		if(outputFolderPath == null || outputFolderPath.trim().equals("")){
-			errorMessages+=("\n\tPlease enter a valid name for the output path");
+			errorMessages.add("Please enter a valid name for the output path");
 		}
-
+		
 		// file
 		File outputFolder = new File(outputFolderPath);
 		if(!outputFolder.exists()) {
-			errorMessages+=("\n\tPath doesn't exist or is incorrect for the output folder");
-
+			errorMessages.add("Path doesn't exist or is incorrect for the output folder");
+			
 		}
-
+		
 		if(!outputFolder.isDirectory()) {
-			errorMessages+=("\n\tFolder must be a directory");
-
+			errorMessages.add("Folder must be a directory");
+			
 		}
-		this.outputFolder = outputFolderPath;
+		this.outputFolder = outputFolder;
 	}
-
-	public String getOutputFolder(){
+	
+	public File getOutputFolder(){
 		return outputFolder;
 	}
-
+	
 	/**
 	 * Refactored function from GeneratorGUIListerner.java
 	 * 
@@ -259,22 +258,21 @@ public class Generator {
 	 * @param fileName The name of the file.
 	 * @return "true" if the directory contains the given file otherwise "false".
 	 */
-	public boolean containsFile(String outputFolderPath, String fileName) {
-		File directory = new File(outputFolderPath);
+	public boolean containsFile(File directory, String fileName) {
 		if(!directory.isDirectory()) {
 			return false;
 		}
-
+		
 		File[] files = directory.listFiles();
 		for(File file : files) {
 			if(file.getName().equals(fileName)) {
 				return true;
 			}
 		}
-
+		
 		return false;
 	}
-
+	
 	/**
 	 * Refactored function from GeneratorGUIListener.java
 	 * 
@@ -295,12 +293,12 @@ public class Generator {
 		}
 		if(containsFile(getOutputFolder(), bpelFileName) && !getOverrideFiles()){
 			throw new Exception("Files with same name already exist: bpel. Please check box to override or change directory");
-
+			
 		}else{
 			// --------------- should ask the user if it is ok to override files
 			this.bpelFileName = bpelFileName;	
 		}
-
+		
 	}
 
 	/**
@@ -314,7 +312,7 @@ public class Generator {
 		}
 		return bpelFileName;
 	}
-
+	
 	/**
 	 * Setter for overridingFiles
 	 * @param override will allow overriding files with same names in directory
@@ -322,7 +320,7 @@ public class Generator {
 	public void setOverrideFiles(boolean override){
 		this.overrideFiles = override;
 	}
-
+	
 	/**
 	 * Getter for overriding files
 	 * @return overrideFiles
@@ -330,7 +328,7 @@ public class Generator {
 	public boolean getOverrideFiles(){
 		return overrideFiles;
 	}
-
+	
 	/**
 	 * Setter for OwlFileName
 	 * @param owlFileName
@@ -346,11 +344,11 @@ public class Generator {
 		// Check if the file already exists.
 		if(containsFile(getOutputFolder(), owlFileName) && !getOverrideFiles()) {
 			throw new Exception("Files with same name already exist: owl. Please check box to override or change directory");
-
+				
 		}else{
 			this.owlFileName = owlFileName;
 		}
-
+		
 	}
 	/**
 	 * Getter for OwlFileName
@@ -363,7 +361,7 @@ public class Generator {
 		}
 		return owlFileName;
 	}
-
+			
 	/**
 	 * Setter for taskWSDLFileName
 	 * @param taskWSDLFileName
@@ -379,15 +377,15 @@ public class Generator {
 		}
 		// Check if the file already exists.
 		if(containsFile(outputFolder, taskWSDLFileName) && !getOverrideFiles()) {
-
+			
 			throw new Exception("Files with same name already exist: taskWsdlFileName. Please check box to override or change directory");
-
+			
 		}else{
 			this.taskWSDLFileName = taskWSDLFileName;
 		}
-
+		
 	}
-
+	
 	/**
 	 *  Getter
 	 * @return taskWSDLFileName
@@ -410,9 +408,9 @@ public class Generator {
 	public void setWSLAFileName(String WSLAFileName) throws Exception{
 		if(WSLAFileName == null || WSLAFileName.trim().equals("")) {
 			throw new Exception("WSLA file name must be valid");
-
+			
 		}
-
+		
 		// Correct file-extension.
 		if(!WSLAFileName.endsWith(".wsla")) {
 			WSLAFileName = WSLAFileName+".wsla";
@@ -424,8 +422,8 @@ public class Generator {
 			this.WSLAFileName = WSLAFileName;
 		}
 	}
-
-
+	
+	
 	/**
 	 * Getter
 	 * @return WSLAFileName
@@ -437,7 +435,7 @@ public class Generator {
 		}
 		return this.WSLAFileName;
 	}
-
+	
 	/**
 	 * Setter
 	 * @param serviceWSDLFileName
@@ -458,7 +456,7 @@ public class Generator {
 		}else{
 			this.serviceWSDLFileName = serviceWSDLFileName;
 		}
-
+		
 	}
 
 	/**
@@ -472,7 +470,7 @@ public class Generator {
 		}
 		return this.serviceWSDLFileName;
 	}
-
+	
 	/**
 	 * User can decide if intermediateFiles need to be created or not
 	 * 
@@ -482,7 +480,7 @@ public class Generator {
 	public void setGenerateIntermediateFiles(boolean generateIntermediateFiles){
 		this.generateIntermediateFiles = generateIntermediateFiles;
 	}
-
+	
 	/**
 	 * Getter
 	 * @return generateIntermediateFiles
@@ -490,7 +488,7 @@ public class Generator {
 	public boolean getGenerateIntermediateFiles(){
 		return this.generateIntermediateFiles;
 	}
-
+	
 	/**
 	 * User can decide if it wants to ignore the calculated minimum based on the solutiondepths numbers
 	 * 
@@ -507,32 +505,32 @@ public class Generator {
 	public boolean getIgnoreMinimum(){
 		return ignoreMinimum;
 	}
-
+	
 	/**
 	 * Calculate the minimum number concepts 
 	 */
 	public void calculateMinNumberConcepts() {
 		int depth = getCompleteSolutionDepth();
 		minNumberConcepts = depth * depth;
-
+		
 		if(getNumberOfConcepts() < minNumberConcepts && !getIgnoreMinimum()){		
-			errorMessages+=("\n\tNumber of Concepts should be at least "+minNumberConcepts+" based on the added values of solution...Please check the box if you want to ignore");
+			errorMessages.add("Number of Concepts should be at least "+minNumberConcepts+" based on the added values of solution...Please check the box if you want to ignore");
 		}
 	}
-
+	
 	/**
 	 * Browse folders....Refactored method from GeneratorGUIListener.java
 	 */
 	public void browseOutputFolder(){
 		// Create a file-chooser.
 		JFileChooser fileChooser=new JFileChooser();
-
+		
 		// Restrict the selection to directories.
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
+		
 		// Set the file-filter. Only directories are shown.
 		fileChooser.setFileFilter(new FileFilter() {	
-
+			
 			@Override
 			public boolean accept(File file) {
 				if(file.isDirectory()) {
@@ -548,10 +546,10 @@ public class Generator {
 				return "Folders";					
 			}
 		});
-
+		
 		// Display the file-chooser.
 		int option = fileChooser.showOpenDialog(fileChooser);
-
+		
 		// Check the return-status.
 		if(option == JFileChooser.APPROVE_OPTION) {
 			String pathOutputFolder = fileChooser.getSelectedFile().getAbsolutePath();
@@ -560,7 +558,7 @@ public class Generator {
 	}
 
 
-	public String getErrorMessages(){
+	public ArrayList getErrorMessages(){
 		return this.errorMessages;
 	}
 

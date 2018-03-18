@@ -44,7 +44,7 @@ public class PseudoAlgorithmBenchmark {
   private final int OPTIMAL_TESTCASE_VALUE = 85;
 
   /**
-   * The size of the genotype in bytes not bits! This size can´t be set by
+   * The size of the genotype in bytes not bits! This size can't be set by
    * the user. Its will be set by the values for reggedness, neutrality,
    * epistasis and affinity for Overfitting.
    * 
@@ -239,7 +239,7 @@ public class PseudoAlgorithmBenchmark {
   }
 
   /**
-   * Returns the size of the genotype in bytes not bits! This size can´t be
+   * Returns the size of the genotype in bytes not bits! This size can't be
    * set by the user. Its will be set by the values for reggedness,
    * neutrality, epistasis and affinity for Overfitting.
    * 
@@ -332,7 +332,7 @@ public class PseudoAlgorithmBenchmark {
       byte[] aTestCase = this.optimalTestcase.clone();
       boolean[] changes;
 
-      // TODO hier ist ein besserer algorithmus nötig!
+      // TODO hier ist ein besserer algorithmus ntig!
       for (int j = 0; j < this.internTestcaseDifficultyLevel; ++j) {
         changes = new boolean[this.phenotypeLength * 8];
         int errorPosition = random.nextInt(this.phenotypeLength * 8);

@@ -30,14 +30,14 @@
 package test.rest;
 
 /**
- * says to S and P: “I have chosen two integers x, y such that 1 < x < y
+ * says to S and P: I have chosen two integers x, y such that 1 < x < y
  * and x+y <= 100. In a moment, I will inform S only of S = x + y and P
- * only of p = xy.” After the announcements are made, the following
+ * only of p = xy. After the announcements are made, the following
  * conversation takes place.<br/>
- * 1. P says: “I do not know the pair”. <br/>
- * 2. S says: “I knew you didn’t”. <br/>
- * 3. P says: “I now know the pair”. <br/>
- * 4. S says: “I now know too”.
+ * 1. P says: "I do not know the pair". <br/>
+ * 2. S says: " knew you didn't". <br/>
+ * 3. P says: "I now know the pair". <br/>
+ * 4. S says: "I now know too".
  * 
  * @author Thomas Weise
  */

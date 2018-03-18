@@ -68,7 +68,7 @@ public abstract class Reconnection<Type> extends ErrorHandler {
   /**
    * the maximum connection retries.
    */
-  private final int m_maxRetries;
+  private int m_maxRetries;
 
   /**
    * Create a new reconnection.

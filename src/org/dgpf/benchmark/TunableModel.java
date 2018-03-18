@@ -1027,7 +1027,7 @@ public class TunableModel {
     } 
 
     if (index > this.functionalObjectiveFunctionCount)
-      return -1;// TODO anstädige fehlermeldung oder anderen wert?
+      return -1;// TODO anstdige fehlermeldung oder anderen wert?
 
     fitness = this.calculateFunctionalObjectivFitness(result,
         index, neutralityBitCount);

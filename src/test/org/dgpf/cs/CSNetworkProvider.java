@@ -108,6 +108,7 @@ public class CSNetworkProvider<MT extends Serializable> extends
    * @param baseDwell
    *          the time each node will dwell at least inside the cs
    */
+  /*
   @SuppressWarnings("unchecked")
   public CSNetworkProvider(
       final IVirtualMachineNetworkParameters<MT> parameters,
@@ -116,7 +117,7 @@ public class CSNetworkProvider<MT extends Serializable> extends
     this(((Class<? extends CSNetwork<MT, ?, ?>>) (CSNetwork.class)),
         parameters, randomizeScenarios, scenarioCount, baseDwell);
   }
-
+*/
   /**
    * Create the scenarios
    * 

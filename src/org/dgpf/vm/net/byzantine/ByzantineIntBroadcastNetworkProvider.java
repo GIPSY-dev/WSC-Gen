@@ -109,6 +109,7 @@ public class ByzantineIntBroadcastNetworkProvider<MT extends Serializable>
    * @param byzantineMask
    *          the byzantine errors the might occur
    */
+  /*
   @SuppressWarnings("unchecked")
   public ByzantineIntBroadcastNetworkProvider(
       final IVirtualMachineNetworkParameters<MT> parameters,
@@ -118,7 +119,7 @@ public class ByzantineIntBroadcastNetworkProvider<MT extends Serializable>
         ((Class<? extends ByzantineIntBroadcastNetwork<MT, ?>>) (ByzantineIntBroadcastNetwork.class)),
         parameters, randomizeScenarios, scenarioCount, byzantineMask);
   }
-
+*/
   /**
    * Create a new network provider
    * 
@@ -132,12 +133,13 @@ public class ByzantineIntBroadcastNetworkProvider<MT extends Serializable>
    * @param baseDwell
    *          the time each node will dwell at least inside the cs
    */
+  /*
   public ByzantineIntBroadcastNetworkProvider(
       final IVirtualMachineNetworkParameters<MT> parameters,
       final boolean randomizeScenarios, final int scenarioCount) {
     this(parameters, randomizeScenarios, scenarioCount, -1);
   }
-
+*/
   /**
    * Create the scenarios
    * 

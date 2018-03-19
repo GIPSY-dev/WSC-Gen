@@ -15,7 +15,7 @@ import de.vs.unikassel.query.client.gui.WSCClient;
  * @author Marc Kirchhoff
  *
  */
-@WebService(name = "CallbackService")
+//@WebService(name = "CallbackService")
 @SOAPBinding(style=SOAPBinding.Style.RPC)
 public class ClientCallbackInterface extends CallBack {
 	

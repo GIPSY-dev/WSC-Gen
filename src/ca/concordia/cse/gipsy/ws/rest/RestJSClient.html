@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rest Client for WS-Gen</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+    <body>
+        <script type="text/javascript">
+            function makeRequest(verb, url, body, toCallOnSuccess) {
+                document.getElementById("error").innerHTML = "";
+                document.getElementById("status").innerHTML = "";
+
+                const requester = new XMLHttpRequest();
+
+                requester.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        toCallOnSuccess();
+                    } else if (this.status == 404) {
+                        document.getElementById("error").innerHTML = "The file you have requested hasn't been generated yet. Please generate them first.";
+                    } else {
+                        document.getElementById("error").innerHTML = "An error happened during the request. HTTP Code: " + this.status;
+                    }
+                };
+
+                requester.open(verb, url, true);
+                
+                if (verb == 'PUT') {
+                    requester.setRequestHeader("Content-type", "application/json");
+                }
+                
+                requester.send(body ? JSON.stringify(body) : null);
+            }
+
+            function generateFiles() {
+                if (document.getElementById("solutionListDepths").innerHTML) {
+                    const depths = document.getElementById("solutionListDepths").innerHTML.split(',');
+                    let solutionsListParsed = [];
+                    
+                    for (let i = 0; i < depths.length; i++) {
+                        if (!isNaN(parseInt(depths[i]))) {
+                            solutionsListParsed[i] = parseInt(depths[i]);
+                        } else {
+                            solutionsListParsed[i] = 10;
+                        }
+                    }
+                }
+                
+                const parameters = {
+                    numberOfConcepts: document.getElementById("numberOfConcepts").innerHTML || 10000,
+                    numberOfServices: document.getElementById("numberOfServices").innerHTML || 4000,
+                    solvableProblem: document.getElementById("isSolvable").innerHTML == 'true' ? true : false,
+                    solutionsList: solutionsListParsed
+                };
+
+                makeRequest('PUT', 'http://localhost/gen', parameters, function() {
+                    document.getElementById("status").innerHTML = "Successfully sent the generation request to the server.";
+                });
+            }
+
+            function getWSDL() {
+                makeRequest('GET', undefined, 'http://localhost/wsdl', function() {
+                    window.open('http://localhost/wsdl', '_blank');
+                });
+            }
+
+            function getWSLA() {
+                makeRequest('GET', undefined, 'http://localhost/wsla', function() {
+                    window.open('http://localhost/wsla', '_blank');
+                });
+            }
+
+            function getOWL() {
+                makeRequest('GET', undefined, 'http://localhost/owl', function() {
+                    window.open('http://localhost/owl', '_blank');
+                });
+            }
+
+            function getBPEL() {
+                makeRequest('GET', undefined, 'http://localhost/bpel', function() {
+                    window.open('http://localhost/bpel', '_blank');
+                });
+            }
+            
+            function changedValue() {
+                if (document.getElementById("isSolvable").value == 'true') {
+                    document.getElementById("solutionListDepths").style.display = 'block';
+                } else {
+                    document.getElementById("solutionListDepths").style.display = 'none';
+                    document.getElementById("solutionListDepths").value = '';
+                } 
+            }
+        </script>
+
+        <div style="text-align: center;">
+            <h1>Javascript REST Client for WS-Gen</h1>
+        </div>
+        <div>
+            <h3>Parameters for the Generator</h3>
+            <p id="error" style="color: red;"></p>
+            <p id="status"></p>
+            <input id="numberOfConcepts" type="number"/>
+            <input id="numberOfServices" type="number"/>
+            <input id="isSolvable" type="text" onkeyup="changedValue"/>
+            <input id="solutionListDepths" style="display: none;" type="text"/>
+            <button type="button" onclick="generateFiles()">Generate Files</button>
+            <div>
+                <button type="button" onclick="getWSDL()">Download WSDL</button>
+                <button type="button" onclick="getWSLA()">Download WSLA</button>
+                <button type="button" onclick="getOWL()">Download OWL</button>
+                <button type="button" onclick="getBPEL()">Download BPEL</button>
+            </div>
+        </div>
+    </body>
+</html>

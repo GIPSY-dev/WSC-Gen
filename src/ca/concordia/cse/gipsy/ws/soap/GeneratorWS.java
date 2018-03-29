@@ -83,15 +83,6 @@ public class GeneratorWS {
     public void setNumberOfConcepts(@WebParam(name= "numberOfConcepts") int numberOfConcepts) {
         instance.setNumberOfConcepts(numberOfConcepts);
     }
-    /**
-     * Getter for numberOfConcepts
-     * 
-     * @return numberOfConcepts
-     */
-    @WebMethod(operationName="getNumberOfConcepts")
-    public int getNumberOfConcepts(){
-        return instance.getNumberOfConcepts();
-    }
 
     /**
      * Setter for number of services
@@ -105,15 +96,6 @@ public class GeneratorWS {
     }
 
     /**
-     * Getter for numberOfServices
-     * @return
-     */
-    @WebMethod(operationName="getNumberOfServices")
-    public int getNumberOfServices(){
-        return instance.getNumberOfServices();
-    }
-
-    /**
      * Setter for solvableProblem
      * 
      * If set to false, solutionDepth, completeSolutionDepth and minNumberOfConcepts are not usable
@@ -124,23 +106,6 @@ public class GeneratorWS {
         instance.setSolvableProblem(solvableProblem);
     }
 
-    /**
-     *  Getter for solvableProblem
-     * @return solvableProblem
-     */
-    @WebMethod(operationName="getSolvableProblem")
-    public boolean getSolvableProblem(){
-        return instance.getSolvableProblem();
-    }
-
-    /**
-     * Getter for solutionsList
-     * @return solutionsList is an array of integer that represent solutionDepths asked by the user
-     */
-    @WebMethod(operationName="getSolutionsList")
-    public int[] getSolutionsList() {
-        return instance.getSolutionsList();
-    }
 
     /**
      * Handle the "Add solutions" button
@@ -151,16 +116,6 @@ public class GeneratorWS {
     @WebMethod(operationName="setSolutionsList")
     public void setSolutionsList(@WebParam(name="depthNumbers") int[] depthNumbers ) {
         instance.setSolutionsList(depthNumbers);
-    }
-
-    /**
-     * Total solutionDepth number
-     * 
-     * @return completeSolutionDepth
-     */
-    @WebMethod(operationName="getCompleteSolutionDepth")
-    public int getCompleteSolutionDepth(){
-        return instance.getCompleteSolutionDepth();
     }
 
     /**
@@ -180,14 +135,6 @@ public class GeneratorWS {
         instance.setGipsy(_gipsy);
     }
 
-    /**
-     * Getter for Gipsy
-     * @return gipsy
-     */
-    @WebMethod(operationName="getGispy")
-    public boolean getGispy(){
-        return instance.getGispy();
-    }
 
     /**
      * Setter for Bpel file name
@@ -197,16 +144,6 @@ public class GeneratorWS {
     @WebMethod(operationName="setBpelFileName")
     public void setBpelFileName(@WebParam(name= "bpelFileName")String bpelFileName) throws Exception {
         instance.setBpelFileName(bpelFileName);
-    }
-
-    /**
-     * Getter for BPEL
-     * @return bpel file name
-     * @throws Exception if file name is null or empty
-     */
-    @WebMethod(operationName="getBpelFileName")
-    public String getBpelFileName() throws Exception{
-        return instance.getBpelFileName();
     }
 
     /**
@@ -220,16 +157,6 @@ public class GeneratorWS {
     }
 
     /**
-     * Getter for OwlFileName
-     * @return the owlfilename
-     * @throws Exception if the file is null or empty
-     */
-    @WebMethod(operationName="getOwlFileName")
-    public String getOwlFileName() throws Exception{
-        return instance.getOwlFileName();
-    }
-
-    /**
      * Setter for taskWSDLFileName
      * @param taskWSDLFileName
      * @throws Exception if file is null or empty, also if the user didn't ask to override and the operation will override files
@@ -237,16 +164,6 @@ public class GeneratorWS {
     @WebMethod(operationName="setTaskWSDLFileName")
     public void setTaskWSDLFileName(@WebParam(name="taskWSDLFileName") String taskWSDLFileName) throws Exception{
         instance.setTaskWSDLFileName(taskWSDLFileName);
-    }
-
-    /**
-     *  Getter
-     * @return taskWSDLFileName
-     * @throws Exception if the file name is empty or null
-     */
-    @WebMethod(operationName="getTaskWSDLFileName")
-    public String getTaskWSDLFileName() throws Exception{
-        return instance.getTaskWSDLFileName();
     }
 
     /**
@@ -263,16 +180,6 @@ public class GeneratorWS {
 
 
     /**
-     * Getter
-     * @return WSLAFileName
-     * @throws Exception if string is  null or empty
-     */
-    @WebMethod(operationName="getWSLAFileName")
-    public String getWSLAFileName() throws Exception{
-        return instance.getWSLAFileName();
-    }
-
-    /**
      * Setter
      * @param serviceWSDLFileName
      * @throws Exception if file is null or empty, also if the file will be override and the user didn't ask for it
@@ -280,16 +187,6 @@ public class GeneratorWS {
     @WebMethod(operationName="setServiceWSDLFileName")
     public void setServiceWSDLFileName(@WebParam(name="serviceWSDLFileName")String serviceWSDLFileName) throws Exception{
         instance.setServiceWSDLFileName(serviceWSDLFileName);
-    }
-
-    /**
-     * Getter
-     * @return serviceWSDLFileName
-     * @throws Exception
-     */
-    @WebMethod(operationName="getServiceWSDLFileName")
-    public String getServiceWSDLFileName() throws Exception{
-        return instance.getServiceWSDLFileName();
     }
 
     /**
@@ -303,15 +200,6 @@ public class GeneratorWS {
         instance.setGenerateIntermediateFiles(generateIntermediateFiles);
     }
 
-    /**
-     * Getter
-     * @return generateIntermediateFiles
-     */
-
-    @WebMethod(operationName="getGenerateIntermediateFiles")
-    public boolean getGenerateIntermediateFiles(){
-        return instance.getGenerateIntermediateFiles();
-    }
 
     /**
      * User can decide if it wants to ignore the calculated minimum based on the solutiondepths numbers
@@ -323,14 +211,6 @@ public class GeneratorWS {
         instance.setIgnoreMinimum(ignoreMinimum);
     }
 
-    /**
-     * Getter
-     * @return ignoreMinimum
-     */
-    @WebMethod(operationName="getIgnoreMinimum")
-    public boolean getIgnoreMinimum(){
-        return instance.getIgnoreMinimum();
-    }
 
     /**
      * Calculate the minimum number concepts 

@@ -6,6 +6,8 @@
 </head>
     <body>
         <script type="text/javascript">
+            const restAPIURL = 'http://localhost:8080/WSC-Gen/resources/restGenerator';
+            
             function makeRequest(verb, url, body, toCallOnSuccess) {
                 document.getElementById("error").innerHTML = "";
                 document.getElementById("status").innerHTML = "";
@@ -52,32 +54,33 @@
                     solutionsList: solutionsListParsed
                 };
 
-                makeRequest('PUT', 'http://localhost/gen', parameters, function() {
+                makeRequest('PUT', restAPIURL + '/gen', parameters, function() {
                     document.getElementById("status").innerHTML = "Successfully sent the generation request to the server.";
+                    document.getElementById("divGetFiles").style.display = 'block';
                 });
             }
 
             function getWSDL() {
-                makeRequest('GET', undefined, 'http://localhost:8080/WSC-Gen/resources/restGenerator/wsdl', function() {
-                    window.open('http://localhost:8080/WSC-Gen/resources/restGenerator/wsdl', '_blank');
+                makeRequest('GET', restAPIURL + 'gen/wsdl', undefined, function() {
+                    window.open(restAPIURL + 'gen/wsdl', '_blank');
                 });
             }
 
             function getWSLA() {
-                makeRequest('GET', undefined, 'http://localhost/wsla', function() {
-                    window.open('http://localhost/wsla', '_blank');
+                makeRequest('GET', restAPIURL + 'gen/wsla', undefined, function() {
+                    window.open(restAPIURL + 'gen/wsla', '_blank');
                 });
             }
 
             function getOWL() {
-                makeRequest('GET', undefined, 'http://localhost/owl', function() {
-                    window.open('http://localhost/owl', '_blank');
+                makeRequest('GET', restAPIURL + 'gen/owl', undefined, function() {
+                    window.open(restAPIURL + 'gen/owl', '_blank');
                 });
             }
 
             function getBPEL() {
-                makeRequest('GET', undefined, 'http://localhost/bpel', function() {
-                    window.open('http://localhost/bpel', '_blank');
+                makeRequest('GET', restAPIURL + 'gen/bpel', undefined, function() {
+                    window.open(restAPIURL + 'gen/bpel', '_blank');
                 });
             }
             
@@ -103,7 +106,7 @@
             <input id="isSolvable" type="text" onkeyup="changedValue"/>
             <input id="solutionListDepths" style="display: none;" type="text"/>
             <button type="button" onclick="generateFiles()">Generate Files</button>
-            <div>
+            <div id="divGetFiles" style="display: none;">
                 <button type="button" onclick="getWSDL()">Download WSDL</button>
                 <button type="button" onclick="getWSLA()">Download WSLA</button>
                 <button type="button" onclick="getOWL()">Download OWL</button>

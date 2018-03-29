@@ -1,6 +1,5 @@
 package ca.concordia.cse.gipsy.ws.rest;
 
-import ca.concordia.cse.gipsy.ws.rest.GeneratorConfiguration;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;

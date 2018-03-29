@@ -1,6 +1,5 @@
 package ca.concordia.cse.gipsy.ws.rest;
 
-import ca.concordia.cse.gipsy.ws.rest.GeneratorConfiguration;
 import java.util.Scanner;
 
 /**
@@ -57,21 +56,21 @@ public class MainRestJavaClient {
     private static GeneratorConfiguration getGenConfiguration(Scanner scan) {
         GeneratorConfiguration config = new GeneratorConfiguration();
         
-        System.out.println("Value for number of concepts:");
+        System.out.println("Value for number of concepts (integer):");
         config.setNumberOfConcepts(scan.nextLine());
         
-        System.out.println("Value for number of services:");
+        System.out.println("Value for number of services (integer):");
         config.setNumberOfServices(scan.nextLine());
         
-        System.out.println("Value for is solvable:");
+        System.out.println("Value for is solvable (true or false):");
         boolean isSolvable = scan.nextBoolean();
         
         config.setSolvableProblem(isSolvable);
         
-//        if (isSolvable) {
-//            System.out.println("Value for solutions list (separate with ,):");
-//            config.setSolutionsList(scan.nextLine());
-//        }
+        if (isSolvable) {
+            System.out.println("Value for solutions list (integers separated by ,):");
+            config.setSolutionsList(scan.nextLine());
+        }
         
         return config;
     }

@@ -6,7 +6,9 @@ import java.io.File;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,14 +44,14 @@ public class RestGenerator {
         try {
             GeneratorConfiguration config = ob.readValue(jsonInput, GeneratorConfiguration.class);
             
-            //instance.setNumberOfConcepts(config.getNumberOfConcepts());
-            //instance.setNumberOfServices(config.getNumberOfServices());
-            //instance.setSolvableProblem(config.isSolvableProblem());
+            instance.setNumberOfConcepts(config.getNumberOfConcepts());
+            instance.setNumberOfServices(config.getNumberOfServices());
+            instance.setSolvableProblem(config.isSolvableProblem());
             
-//            if (config.isSolvableProblem()) {
-//                instance.setSolutionsList(config.getSolutionsList());
-//                instance.setCompleteSolutionDepth();
-//            }
+            if (config.isSolvableProblem()) {
+                instance.setSolutionsList(config.getSolutionsList());
+                instance.setCompleteSolutionDepth();
+            }
             
             instance.start();
             
@@ -102,9 +104,32 @@ public class RestGenerator {
             response = Response.ok(toReturn, MediaType.TEXT_PLAIN);
             response.header("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
         } else {
-            response = Response.status(Response.Status.BAD_GATEWAY);
+            response = Response.status(Response.Status.NOT_FOUND);
         }
         
         return response.build();
     }
+    
+    /*
+    For the methods that aren't allowed
+    */
+    @PUT
+    @POST
+    @DELETE
+    @Path("gen/{fileType}")
+    public Response notImplementedGetFile() {
+        return Response.status(Response.Status.METHOD_NOT_ALLOWED).build();
+    }
+    
+    /*
+    For the methods that aren't allowed
+    */
+    @GET
+    @POST
+    @DELETE
+    @Path("gen")
+    public Response notImplementedGenFiles() {
+        return Response.status(Response.Status.METHOD_NOT_ALLOWED).build();
+    }
+
 }

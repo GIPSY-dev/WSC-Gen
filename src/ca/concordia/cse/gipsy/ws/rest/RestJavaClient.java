@@ -76,6 +76,7 @@ public class RestJavaClient {
         JFileChooser fileChooser = new JFileChooser();
         
         if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            fileChooser.setVisible(false);
             return fileChooser.getSelectedFile();
         }
         

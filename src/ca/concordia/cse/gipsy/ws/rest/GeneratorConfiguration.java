@@ -30,7 +30,7 @@ public class GeneratorConfiguration implements Serializable {
         this.solvableProblem = solvableProblem;
     }
 
-    public void setSolutionsList(String valueInput) {
+    public void setSolutionsListViaString(String valueInput) {
         String[] differentDepths = valueInput.split(",");
         
         solutionsList = new int[differentDepths.length];
@@ -38,6 +38,10 @@ public class GeneratorConfiguration implements Serializable {
         for (int i = 0; i < differentDepths.length; i++) {
             solutionsList[i] = getInt(differentDepths[i], 10, "Solution list depth");
         }
+    }
+    
+    public void setSolutionsList(int[] valueInput) {
+        this.solutionsList = valueInput;
     }
 
     public int getNumberOfConcepts() {

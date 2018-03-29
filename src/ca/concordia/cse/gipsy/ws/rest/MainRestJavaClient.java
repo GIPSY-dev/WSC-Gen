@@ -63,13 +63,13 @@ public class MainRestJavaClient {
         config.setNumberOfServices(scan.nextLine());
         
         System.out.println("Value for is solvable (true or false):");
-        boolean isSolvable = scan.nextBoolean();
+        boolean isSolvable = Boolean.parseBoolean(scan.nextLine());
         
         config.setSolvableProblem(isSolvable);
         
         if (isSolvable) {
             System.out.println("Value for solutions list (integers separated by ,):");
-            config.setSolutionsList(scan.nextLine());
+            config.setSolutionsListViaString(scan.nextLine());
         }
         
         return config;

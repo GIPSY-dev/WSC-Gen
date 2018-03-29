@@ -39,6 +39,8 @@ public class RestGenerator {
     @Path("gen")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response generate(String jsonInput) {
+        System.out.println("JSON input: " + jsonInput);
+        
         ObjectMapper ob = new ObjectMapper();
         
         try {
@@ -114,21 +116,38 @@ public class RestGenerator {
     For the methods that aren't allowed
     */
     @PUT
-    @POST
-    @DELETE
     @Path("gen/{fileType}")
-    public Response notImplementedGetFile() {
+    public Response notImplementedGetFilePUT() {
         return Response.status(Response.Status.METHOD_NOT_ALLOWED).build();
     }
     
-    /*
-    For the methods that aren't allowed
-    */
-    @GET
     @POST
+    @Path("gen/{fileType}")
+    public Response notImplementedGetFilePOST() {
+        return Response.status(Response.Status.METHOD_NOT_ALLOWED).build();
+    }
+    
+    @DELETE
+    @Path("gen/{fileType}")
+    public Response notImplementedGetFileDELETE() {
+        return Response.status(Response.Status.METHOD_NOT_ALLOWED).build();
+    }
+    
+    @GET
+    @Path("gen")
+    public Response notImplementedGenFilesGET() {
+        return Response.status(Response.Status.METHOD_NOT_ALLOWED).build();
+    }
+    
+    @POST
+    @Path("gen")
+    public Response notImplementedGenFilesPOST() {
+        return Response.status(Response.Status.METHOD_NOT_ALLOWED).build();
+    }
+    
     @DELETE
     @Path("gen")
-    public Response notImplementedGenFiles() {
+    public Response notImplementedGenFilesDELETE() {
         return Response.status(Response.Status.METHOD_NOT_ALLOWED).build();
     }
 

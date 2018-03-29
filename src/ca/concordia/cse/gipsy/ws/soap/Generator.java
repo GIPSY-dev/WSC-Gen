@@ -2,18 +2,7 @@ package ca.concordia.cse.gipsy.ws.soap;
 
 
 import java.io.File;
-
-import java.util.ArrayList;
-
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
-
-
-
 import de.vs.unikassel.generator.gui.listener.TaskGenerator;
-
-
-
 
 /**
  * Generator based on GeneratorGUIListener.java in de.vs.unikassel.generator.gui.listener
@@ -41,6 +30,7 @@ public class Generator {
 	private String errorMessages = null;
 	private boolean overrideFiles = true;
 	private boolean ignoreMinimum = false;
+        private boolean isRunning = false;
 
 	public Generator() {
 
@@ -49,39 +39,55 @@ public class Generator {
 
 	/**
 	 * Call this function to set default values for the Generator. 
-	 * @see BrowseOutputFolder() also - need to be called
 	 * @throws Exception
 	 */
 	public void setDefault() throws Exception{
-
-		setNumberOfConcepts(10000);
-		setNumberOfServices(4000);
-		setSolvableProblem(true);
-		solutionDepths = new int[1];
-		solutionDepths[0] = 10;
-		setSolutionsList(solutionDepths);
-		setCompleteSolutionDepth();
-		calculateMinNumberConcepts();
-		setGipsy(false);
-		setBpelFileName("Solution");
-		setServiceWSDLFileName("Services");
-		setOwlFileName("Taxonomy");
-		setTaskWSDLFileName("Challenge");
-		setWSLAFileName("Servicelevelagreements");
-		setGenerateIntermediateFiles(false);
-	}
+            setOutputFolder(System.getProperty("user.dir"));
+                setOverrideFiles(true);	
+            
+            setNumberOfConcepts(10000);
+            setNumberOfServices(4000);
+            setSolvableProblem(true);
+            solutionDepths = new int[1];
+            solutionDepths[0] = 10;
+            setSolutionsList(solutionDepths);
+            setCompleteSolutionDepth();
+            calculateMinNumberConcepts();
+            setGipsy(false);
+            setBpelFileName("Solution");
+            setServiceWSDLFileName("Services");
+            setOwlFileName("Taxonomy");
+            setTaskWSDLFileName("Challenge");
+            setWSLAFileName("Servicelevelagreements");
+            setGenerateIntermediateFiles(false);
+        }
 
 	/**
 	 * Called when all the elements for the generator is setup
 	 * @see BrowseOutputFolder() also - this function need to be called or setup before start()
 	 * @throws Exception
 	 */
-	public void start() throws Exception{
-		File outputFolderPath = new File(this.getOutputFolder());
-		taskGenerator = new TaskGenerator(getNumberOfConcepts(), getSolvableProblem(), getSolutionsList(), getNumberOfServices(),
-				outputFolderPath, getBpelFileName(), getServiceWSDLFileName(), getTaskWSDLFileName(), getOwlFileName(), getWSLAFileName(), getGenerateIntermediateFiles());
-		Thread taskGeneratorThread = new Thread((Runnable) taskGenerator);
-		taskGeneratorThread.start();
+	public boolean start() throws Exception{
+           this.isRunning = true; 
+                       
+            File outputFolderPath = new File(this.getOutputFolder());
+            taskGenerator = new TaskGenerator(getNumberOfConcepts(), getSolvableProblem(), getSolutionsList(), getNumberOfServices(),
+                            outputFolderPath, getBpelFileName(), getServiceWSDLFileName(), getTaskWSDLFileName(), getOwlFileName(), getWSLAFileName(), getGenerateIntermediateFiles());
+
+            taskGenerator.setIsGUI(false);
+
+            Thread taskGeneratorThread = new Thread((Runnable) taskGenerator);
+            taskGeneratorThread.start();
+
+            try {
+                taskGeneratorThread.join();
+                this.isRunning = false;
+                return true;
+            } catch (InterruptedException ex) {
+                System.out.println("Exception when waiting for main thread in generator. " + ex.getMessage());
+                this.isRunning = false;
+                return false;
+            }
 	}
 
 	/**
@@ -520,48 +526,15 @@ public class Generator {
 		}
 	}
 
-	/**
-	 * Browse folders....Refactored method from GeneratorGUIListener.java
-	 */
-	public void browseOutputFolder(){
-		// Create a file-chooser.
-		JFileChooser fileChooser=new JFileChooser();
-
-		// Restrict the selection to directories.
-		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-		// Set the file-filter. Only directories are shown.
-		fileChooser.setFileFilter(new FileFilter() {	
-
-			@Override
-			public boolean accept(File file) {
-				if(file.isDirectory()) {
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-
-			@Override
-			public String getDescription() {
-				return "Folders";					
-			}
-		});
-
-		// Display the file-chooser.
-		int option = fileChooser.showOpenDialog(fileChooser);
-
-		// Check the return-status.
-		if(option == JFileChooser.APPROVE_OPTION) {
-			String pathOutputFolder = fileChooser.getSelectedFile().getAbsolutePath();
-			setOutputFolder(pathOutputFolder);
-		}
-	}
-
-
 	public String getErrorMessages(){
 		return this.errorMessages;
 	}
-
+        
+        public File getFile(String filePath) {
+            if (this.isRunning) {
+                return null;
+            }
+            
+            return new File(this.outputFolder + "/" + filePath);
+        }
 }

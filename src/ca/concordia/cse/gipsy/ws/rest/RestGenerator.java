@@ -8,6 +8,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,15 +23,15 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 public class RestGenerator {
     private Generator instance;
     
-    /*public RestGenerator() {
+    public RestGenerator() {
         instance = new Generator();
         
         try {
             instance.setDefault();   
         } catch (Exception ex) {
-            System.out.println("Problem when setting the defaults of the generator. Error: " + ex.getLocalizedMessage());
+            System.out.println("Problem when setting the defaults of the generator. Error: " + ex.getMessage());
         }
-    }*/
+    }
     
     @PUT
     @Path("gen")
@@ -41,81 +42,69 @@ public class RestGenerator {
         try {
             GeneratorConfiguration config = ob.readValue(jsonInput, GeneratorConfiguration.class);
             
-            instance.setNumberOfConcepts(config.getNumberOfConcepts());
-            instance.setNumberOfServices(config.getNumberOfServices());
-            instance.setSolvableProblem(config.isSolvableProblem());
+            //instance.setNumberOfConcepts(config.getNumberOfConcepts());
+            //instance.setNumberOfServices(config.getNumberOfServices());
+            //instance.setSolvableProblem(config.isSolvableProblem());
             
-            if (config.isSolvableProblem()) {
-                instance.setSolutionsList(config.getSolutionsList());
-                instance.setCompleteSolutionDepth();
-            }
+//            if (config.isSolvableProblem()) {
+//                instance.setSolutionsList(config.getSolutionsList());
+//                instance.setCompleteSolutionDepth();
+//            }
             
             instance.start();
             
             return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
     
     @GET
-    @Path("wsdl")
+    @Path("gen/{fileType}")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response getWSDL() {
-        try {
-            this.generateGetResponse(instance.getServiceWSDLFileName());
-        } catch (Exception ex) {
-            System.out.println(ex.getLocalizedMessage());
-        }
+    public Response getFileGenerated(@PathParam("fileType") String fileType) {
+        String fileName = "";
         
-        return Response.status(Response.Status.BAD_GATEWAY).build();
-    }
-    
-    @GET
-    @Path("wsla")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response getWSLA() {
         try {
-            this.generateGetResponse(instance.getWSLAFileName());
+            switch(fileType.toLowerCase()) {
+                case "wsdl":
+                    fileName = instance.getServiceWSDLFileName();
+                    break;
+                case "owl":
+                    fileName = instance.getOwlFileName();
+                    break;
+                case "wsla":
+                    fileName = instance.getWSLAFileName();
+                    break;
+                case "bpel":
+                    fileName = instance.getBpelFileName();
+                    break;
+            }
+            
+            if (fileName.isEmpty()) {
+                throw new Exception("Invalid file type to get.");
+            }
+            
+            return this.generateGetResponse(fileName); 
         } catch (Exception ex) {
-            System.out.println(ex.getLocalizedMessage());
+            System.out.println(ex.getMessage());
+            return Response.status(Response.Status.BAD_GATEWAY).build();
         }
-        
-        return Response.status(Response.Status.BAD_GATEWAY).build();
     }
-    
-    @GET
-    @Path("owl")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response getOWL() {
-        try {
-            this.generateGetResponse(instance.getOwlFileName());
-        } catch (Exception ex) {
-            System.out.println(ex.getLocalizedMessage());
-        }
         
-        return Response.status(Response.Status.BAD_GATEWAY).build();
-    }
-    
-    @GET
-    @Path("bpel")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response getBPEL() {
-        try {
-            this.generateGetResponse(instance.getBpelFileName());
-        } catch (Exception ex) {
-            System.out.println(ex.getLocalizedMessage());
-        }
-        
-        return Response.status(Response.Status.BAD_GATEWAY).build();
-    }
-    
     private Response generateGetResponse(String fileName) {
-        File toReturn = new File(fileName);
-
-        ResponseBuilder response = Response.ok((Object) toReturn);
-        response.header("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-
+        File toReturn = instance.getFile(fileName);
+        
+        ResponseBuilder response;
+        
+        if (toReturn != null) {
+            response = Response.ok(toReturn, MediaType.TEXT_PLAIN);
+            response.header("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+        } else {
+            response = Response.status(Response.Status.BAD_GATEWAY);
+        }
+        
         return response.build();
     }
 }

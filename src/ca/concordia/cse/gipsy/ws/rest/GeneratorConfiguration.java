@@ -1,14 +1,18 @@
 package ca.concordia.cse.gipsy.ws.rest;
 
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author Jo
  */
-public class GeneratorConfiguration {
-    private int numberOfConcepts;
-    private int numberOfServices;  
-    private boolean solvableProblem;                          
-    private int[] solutionsList ;         
+@XmlRootElement
+public class GeneratorConfiguration implements Serializable {
+    public int numberOfConcepts;
+    public int numberOfServices;  
+    public boolean solvableProblem;                          
+    public int[] solutionsList ;         
     
     public GeneratorConfiguration() {
         

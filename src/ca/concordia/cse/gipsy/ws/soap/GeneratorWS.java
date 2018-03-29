@@ -2,6 +2,7 @@ package ca.concordia.cse.gipsy.ws.soap;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
+import javax.jws.Oneway;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -68,8 +69,8 @@ public class GeneratorWS {
      * @throws Exception
      */
     @WebMethod(operationName="start")
-    public void start() throws Exception {
-        instance.start();
+    public boolean start() throws Exception {
+        return instance.start();
     }
 
     /**

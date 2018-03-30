@@ -224,4 +224,13 @@ public class GeneratorWS {
     public String getErrorMessages(){
         return instance.getErrorMessages();
     }
+    
+    /**
+     * 
+     * @return information about the generator
+     */
+    @WebMethod(operationName="infoButton")
+    public String infoButton(){
+        return instance.infoButton();
+    }
 }

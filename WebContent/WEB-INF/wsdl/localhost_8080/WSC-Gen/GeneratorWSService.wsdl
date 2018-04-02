@@ -19,12 +19,6 @@
 <message name="setDefaultResponse">
 <part name="parameters" element="tns:setDefaultResponse"/>
 </message>
-<message name="getFileGenerated">
-<part name="parameters" element="tns:getFileGenerated"/>
-</message>
-<message name="getFileGeneratedResponse">
-<part name="parameters" element="tns:getFileGeneratedResponse"/>
-</message>
 <message name="setNumberOfConcepts">
 <part name="parameters" element="tns:setNumberOfConcepts"/>
 </message>
@@ -43,17 +37,59 @@
 <message name="setSolvableProblemResponse">
 <part name="parameters" element="tns:setSolvableProblemResponse"/>
 </message>
-<message name="setSolutionsList">
-<part name="parameters" element="tns:setSolutionsList"/>
-</message>
-<message name="setSolutionsListResponse">
-<part name="parameters" element="tns:setSolutionsListResponse"/>
-</message>
 <message name="setCompleteSolutionDepth">
 <part name="parameters" element="tns:setCompleteSolutionDepth"/>
 </message>
 <message name="setCompleteSolutionDepthResponse">
 <part name="parameters" element="tns:setCompleteSolutionDepthResponse"/>
+</message>
+<message name="setTaskWSDLFileName">
+<part name="parameters" element="tns:setTaskWSDLFileName"/>
+</message>
+<message name="setTaskWSDLFileNameResponse">
+<part name="parameters" element="tns:setTaskWSDLFileNameResponse"/>
+</message>
+<message name="setServiceWSDLFileName">
+<part name="parameters" element="tns:setServiceWSDLFileName"/>
+</message>
+<message name="setServiceWSDLFileNameResponse">
+<part name="parameters" element="tns:setServiceWSDLFileNameResponse"/>
+</message>
+<message name="setGenerateIntermediateFiles">
+<part name="parameters" element="tns:setGenerateIntermediateFiles"/>
+</message>
+<message name="setGenerateIntermediateFilesResponse">
+<part name="parameters" element="tns:setGenerateIntermediateFilesResponse"/>
+</message>
+<message name="calculateMinNumberConcepts">
+<part name="parameters" element="tns:calculateMinNumberConcepts"/>
+</message>
+<message name="calculateMinNumberConceptsResponse">
+<part name="parameters" element="tns:calculateMinNumberConceptsResponse"/>
+</message>
+<message name="getErrorMessages">
+<part name="parameters" element="tns:getErrorMessages"/>
+</message>
+<message name="getErrorMessagesResponse">
+<part name="parameters" element="tns:getErrorMessagesResponse"/>
+</message>
+<message name="setIgnoreMinimum">
+<part name="parameters" element="tns:setIgnoreMinimum"/>
+</message>
+<message name="setIgnoreMinimumResponse">
+<part name="parameters" element="tns:setIgnoreMinimumResponse"/>
+</message>
+<message name="getFileGenerated">
+<part name="parameters" element="tns:getFileGenerated"/>
+</message>
+<message name="getFileGeneratedResponse">
+<part name="parameters" element="tns:getFileGeneratedResponse"/>
+</message>
+<message name="setSolutionsList">
+<part name="parameters" element="tns:setSolutionsList"/>
+</message>
+<message name="setSolutionsListResponse">
+<part name="parameters" element="tns:setSolutionsListResponse"/>
 </message>
 <message name="setGipsy">
 <part name="parameters" element="tns:setGipsy"/>
@@ -73,47 +109,11 @@
 <message name="setOwlFileNameResponse">
 <part name="parameters" element="tns:setOwlFileNameResponse"/>
 </message>
-<message name="setTaskWSDLFileName">
-<part name="parameters" element="tns:setTaskWSDLFileName"/>
-</message>
-<message name="setTaskWSDLFileNameResponse">
-<part name="parameters" element="tns:setTaskWSDLFileNameResponse"/>
-</message>
 <message name="setWSLAFileName">
 <part name="parameters" element="tns:setWSLAFileName"/>
 </message>
 <message name="setWSLAFileNameResponse">
 <part name="parameters" element="tns:setWSLAFileNameResponse"/>
-</message>
-<message name="setServiceWSDLFileName">
-<part name="parameters" element="tns:setServiceWSDLFileName"/>
-</message>
-<message name="setServiceWSDLFileNameResponse">
-<part name="parameters" element="tns:setServiceWSDLFileNameResponse"/>
-</message>
-<message name="setGenerateIntermediateFiles">
-<part name="parameters" element="tns:setGenerateIntermediateFiles"/>
-</message>
-<message name="setGenerateIntermediateFilesResponse">
-<part name="parameters" element="tns:setGenerateIntermediateFilesResponse"/>
-</message>
-<message name="setIgnoreMinimum">
-<part name="parameters" element="tns:setIgnoreMinimum"/>
-</message>
-<message name="setIgnoreMinimumResponse">
-<part name="parameters" element="tns:setIgnoreMinimumResponse"/>
-</message>
-<message name="calculateMinNumberConcepts">
-<part name="parameters" element="tns:calculateMinNumberConcepts"/>
-</message>
-<message name="calculateMinNumberConceptsResponse">
-<part name="parameters" element="tns:calculateMinNumberConceptsResponse"/>
-</message>
-<message name="getErrorMessages">
-<part name="parameters" element="tns:getErrorMessages"/>
-</message>
-<message name="getErrorMessagesResponse">
-<part name="parameters" element="tns:getErrorMessagesResponse"/>
 </message>
 <message name="infoButton">
 <part name="parameters" element="tns:infoButton"/>
@@ -132,11 +132,6 @@
 <output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setDefaultResponse" message="tns:setDefaultResponse"/>
 <fault message="tns:Exception" name="Exception" wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setDefault/Fault/Exception"/>
 </operation>
-<operation name="getFileGenerated">
-<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/getFileGeneratedRequest" message="tns:getFileGenerated"/>
-<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/getFileGeneratedResponse" message="tns:getFileGeneratedResponse"/>
-<fault message="tns:Exception" name="Exception" wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/getFileGenerated/Fault/Exception"/>
-</operation>
 <operation name="setNumberOfConcepts">
 <input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setNumberOfConceptsRequest" message="tns:setNumberOfConcepts"/>
 <output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setNumberOfConceptsResponse" message="tns:setNumberOfConceptsResponse"/>
@@ -149,13 +144,44 @@
 <input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setSolvableProblemRequest" message="tns:setSolvableProblem"/>
 <output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setSolvableProblemResponse" message="tns:setSolvableProblemResponse"/>
 </operation>
-<operation name="setSolutionsList">
-<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setSolutionsListRequest" message="tns:setSolutionsList"/>
-<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setSolutionsListResponse" message="tns:setSolutionsListResponse"/>
-</operation>
 <operation name="setCompleteSolutionDepth">
 <input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setCompleteSolutionDepthRequest" message="tns:setCompleteSolutionDepth"/>
 <output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setCompleteSolutionDepthResponse" message="tns:setCompleteSolutionDepthResponse"/>
+</operation>
+<operation name="setTaskWSDLFileName">
+<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setTaskWSDLFileNameRequest" message="tns:setTaskWSDLFileName"/>
+<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setTaskWSDLFileNameResponse" message="tns:setTaskWSDLFileNameResponse"/>
+<fault message="tns:Exception" name="Exception" wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setTaskWSDLFileName/Fault/Exception"/>
+</operation>
+<operation name="setServiceWSDLFileName">
+<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setServiceWSDLFileNameRequest" message="tns:setServiceWSDLFileName"/>
+<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setServiceWSDLFileNameResponse" message="tns:setServiceWSDLFileNameResponse"/>
+<fault message="tns:Exception" name="Exception" wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setServiceWSDLFileName/Fault/Exception"/>
+</operation>
+<operation name="setGenerateIntermediateFiles">
+<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setGenerateIntermediateFilesRequest" message="tns:setGenerateIntermediateFiles"/>
+<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setGenerateIntermediateFilesResponse" message="tns:setGenerateIntermediateFilesResponse"/>
+</operation>
+<operation name="calculateMinNumberConcepts">
+<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/calculateMinNumberConceptsRequest" message="tns:calculateMinNumberConcepts"/>
+<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/calculateMinNumberConceptsResponse" message="tns:calculateMinNumberConceptsResponse"/>
+</operation>
+<operation name="getErrorMessages">
+<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/getErrorMessagesRequest" message="tns:getErrorMessages"/>
+<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/getErrorMessagesResponse" message="tns:getErrorMessagesResponse"/>
+</operation>
+<operation name="setIgnoreMinimum">
+<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setIgnoreMinimumRequest" message="tns:setIgnoreMinimum"/>
+<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setIgnoreMinimumResponse" message="tns:setIgnoreMinimumResponse"/>
+</operation>
+<operation name="getFileGenerated">
+<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/getFileGeneratedRequest" message="tns:getFileGenerated"/>
+<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/getFileGeneratedResponse" message="tns:getFileGeneratedResponse"/>
+<fault message="tns:Exception" name="Exception" wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/getFileGenerated/Fault/Exception"/>
+</operation>
+<operation name="setSolutionsList">
+<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setSolutionsListRequest" message="tns:setSolutionsList"/>
+<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setSolutionsListResponse" message="tns:setSolutionsListResponse"/>
 </operation>
 <operation name="setGipsy">
 <input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setGipsyRequest" message="tns:setGipsy"/>
@@ -171,36 +197,10 @@
 <output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setOwlFileNameResponse" message="tns:setOwlFileNameResponse"/>
 <fault message="tns:Exception" name="Exception" wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setOwlFileName/Fault/Exception"/>
 </operation>
-<operation name="setTaskWSDLFileName">
-<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setTaskWSDLFileNameRequest" message="tns:setTaskWSDLFileName"/>
-<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setTaskWSDLFileNameResponse" message="tns:setTaskWSDLFileNameResponse"/>
-<fault message="tns:Exception" name="Exception" wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setTaskWSDLFileName/Fault/Exception"/>
-</operation>
 <operation name="setWSLAFileName">
 <input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setWSLAFileNameRequest" message="tns:setWSLAFileName"/>
 <output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setWSLAFileNameResponse" message="tns:setWSLAFileNameResponse"/>
 <fault message="tns:Exception" name="Exception" wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setWSLAFileName/Fault/Exception"/>
-</operation>
-<operation name="setServiceWSDLFileName">
-<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setServiceWSDLFileNameRequest" message="tns:setServiceWSDLFileName"/>
-<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setServiceWSDLFileNameResponse" message="tns:setServiceWSDLFileNameResponse"/>
-<fault message="tns:Exception" name="Exception" wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setServiceWSDLFileName/Fault/Exception"/>
-</operation>
-<operation name="setGenerateIntermediateFiles">
-<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setGenerateIntermediateFilesRequest" message="tns:setGenerateIntermediateFiles"/>
-<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setGenerateIntermediateFilesResponse" message="tns:setGenerateIntermediateFilesResponse"/>
-</operation>
-<operation name="setIgnoreMinimum">
-<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setIgnoreMinimumRequest" message="tns:setIgnoreMinimum"/>
-<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/setIgnoreMinimumResponse" message="tns:setIgnoreMinimumResponse"/>
-</operation>
-<operation name="calculateMinNumberConcepts">
-<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/calculateMinNumberConceptsRequest" message="tns:calculateMinNumberConcepts"/>
-<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/calculateMinNumberConceptsResponse" message="tns:calculateMinNumberConceptsResponse"/>
-</operation>
-<operation name="getErrorMessages">
-<input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/getErrorMessagesRequest" message="tns:getErrorMessages"/>
-<output wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/getErrorMessagesResponse" message="tns:getErrorMessagesResponse"/>
 </operation>
 <operation name="infoButton">
 <input wsam:Action="http://soap.ws.gipsy.cse.concordia.ca/GeneratorWS/infoButtonRequest" message="tns:infoButton"/>
@@ -233,18 +233,6 @@
 <soap:fault name="Exception" use="literal"/>
 </fault>
 </operation>
-<operation name="getFileGenerated">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="Exception">
-<soap:fault name="Exception" use="literal"/>
-</fault>
-</operation>
 <operation name="setNumberOfConcepts">
 <soap:operation soapAction=""/>
 <input>
@@ -272,7 +260,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="setSolutionsList">
+<operation name="setCompleteSolutionDepth">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -281,7 +269,79 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="setCompleteSolutionDepth">
+<operation name="setTaskWSDLFileName">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</fault>
+</operation>
+<operation name="setServiceWSDLFileName">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</fault>
+</operation>
+<operation name="setGenerateIntermediateFiles">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="calculateMinNumberConcepts">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getErrorMessages">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="setIgnoreMinimum">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getFileGenerated">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</fault>
+</operation>
+<operation name="setSolutionsList">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -323,18 +383,6 @@
 <soap:fault name="Exception" use="literal"/>
 </fault>
 </operation>
-<operation name="setTaskWSDLFileName">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="Exception">
-<soap:fault name="Exception" use="literal"/>
-</fault>
-</operation>
 <operation name="setWSLAFileName">
 <soap:operation soapAction=""/>
 <input>
@@ -346,54 +394,6 @@
 <fault name="Exception">
 <soap:fault name="Exception" use="literal"/>
 </fault>
-</operation>
-<operation name="setServiceWSDLFileName">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="Exception">
-<soap:fault name="Exception" use="literal"/>
-</fault>
-</operation>
-<operation name="setGenerateIntermediateFiles">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="setIgnoreMinimum">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="calculateMinNumberConcepts">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getErrorMessages">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
 </operation>
 <operation name="infoButton">
 <soap:operation soapAction=""/>

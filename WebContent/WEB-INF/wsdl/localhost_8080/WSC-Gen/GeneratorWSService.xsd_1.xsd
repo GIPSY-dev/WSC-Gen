@@ -78,6 +78,14 @@
 
 <xs:element name="startResponse" type="tns:startResponse"/>
 
+<xs:complexType name="calculateMinNumberConcepts">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="calculateMinNumberConceptsResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="getFileGenerated">
 <xs:sequence>
 <xs:element name="fileType" type="xs:string" minOccurs="0"/>
@@ -94,14 +102,6 @@
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"/>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="calculateMinNumberConcepts">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="calculateMinNumberConceptsResponse">
-<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="setOwlFileName">

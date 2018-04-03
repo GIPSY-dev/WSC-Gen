@@ -1,6 +1,5 @@
 package ca.concordia.cse.gipsy.ws.rest;
 
-import ca.concordia.cse.gipsy.ws.rest.GeneratorConfiguration;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -22,7 +21,7 @@ public class RestJavaClient {
    
     
     public RestJavaClient(String urlRestApi) {
-        restClient = ClientBuilder.newClient();
+        restClient =  ClientBuilder.newClient();
         this.urlRestApi = urlRestApi;
     }
     
@@ -50,10 +49,9 @@ public class RestJavaClient {
     }
     
     private void getFile(String fileType) {
-        WebTarget resource = restClient.target(this.urlRestApi + "/" + fileType);
+        WebTarget resource = restClient.target(this.urlRestApi + "/gen/" + fileType);
         
-        Response answer = resource.request("text/plain")
-                .get();
+        Response answer = resource.request(MediaType.TEXT_PLAIN).get();
         
         if (answer.getStatus() == Response.Status.OK.getStatusCode()) {
             InputStream is = answer.readEntity(InputStream.class);
@@ -78,6 +76,7 @@ public class RestJavaClient {
         JFileChooser fileChooser = new JFileChooser();
         
         if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            fileChooser.setVisible(false);
             return fileChooser.getSelectedFile();
         }
         

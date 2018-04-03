@@ -1,14 +1,18 @@
 package ca.concordia.cse.gipsy.ws.rest;
 
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author Jo
  */
-public class GeneratorConfiguration {
-    private int numberOfConcepts;
-    private int numberOfServices;  
-    private boolean solvableProblem;                          
-    private int[] solutionsList ;         
+@XmlRootElement
+public class GeneratorConfiguration implements Serializable {
+    public int numberOfConcepts;
+    public int numberOfServices;  
+    public boolean solvableProblem;                          
+    public int[] solutionsList ;         
     
     public GeneratorConfiguration() {
         
@@ -26,7 +30,7 @@ public class GeneratorConfiguration {
         this.solvableProblem = solvableProblem;
     }
 
-    public void setSolutionsList(String valueInput) {
+    public void setSolutionsListViaString(String valueInput) {
         String[] differentDepths = valueInput.split(",");
         
         solutionsList = new int[differentDepths.length];
@@ -34,6 +38,10 @@ public class GeneratorConfiguration {
         for (int i = 0; i < differentDepths.length; i++) {
             solutionsList[i] = getInt(differentDepths[i], 10, "Solution list depth");
         }
+    }
+    
+    public void setSolutionsList(int[] valueInput) {
+        this.solutionsList = valueInput;
     }
 
     public int getNumberOfConcepts() {

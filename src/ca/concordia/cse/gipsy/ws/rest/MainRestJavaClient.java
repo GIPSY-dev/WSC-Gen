@@ -1,6 +1,5 @@
 package ca.concordia.cse.gipsy.ws.rest;
 
-import ca.concordia.cse.gipsy.ws.rest.GeneratorConfiguration;
 import java.util.Scanner;
 
 /**
@@ -9,7 +8,7 @@ import java.util.Scanner;
  */
 public class MainRestJavaClient {
     public static void main(String[] args) {
-        RestJavaClient client = new RestJavaClient("http://localhost:8080/PM2Part2/webresources/restGenerator");
+        RestJavaClient client = new RestJavaClient("http://localhost:8080/WSC-Gen/resources/restGenerator");
        
         Scanner scan = new Scanner(System.in);
         
@@ -22,10 +21,11 @@ public class MainRestJavaClient {
             System.out.println("OWL: to get the owl file");
             System.out.println("BPEL: to get the bpel file");
             System.out.println("WSLA: to get the wsla file");
+            System.out.println("");
             
             String answer = scan.nextLine();
             
-            switch (answer) {
+            switch (answer.toUpperCase()) {
                 case "GENERATE":
                     client.generateFiles(getGenConfiguration(scan));
                     break;
@@ -56,20 +56,20 @@ public class MainRestJavaClient {
     private static GeneratorConfiguration getGenConfiguration(Scanner scan) {
         GeneratorConfiguration config = new GeneratorConfiguration();
         
-        System.out.println("Value for number of concepts:");
+        System.out.println("Value for number of concepts (integer):");
         config.setNumberOfConcepts(scan.nextLine());
         
-        System.out.println("Value for number of services:");
+        System.out.println("Value for number of services (integer):");
         config.setNumberOfServices(scan.nextLine());
         
-        System.out.println("Value for number of services:");
-        boolean isSolvable = scan.nextBoolean();
+        System.out.println("Value for is solvable (true or false):");
+        boolean isSolvable = Boolean.parseBoolean(scan.nextLine());
         
         config.setSolvableProblem(isSolvable);
         
         if (isSolvable) {
-            System.out.println("Value for solutions list (separate with ,):");
-            config.setSolutionsList(scan.nextLine());
+            System.out.println("Value for solutions list (integers separated by ,):");
+            config.setSolutionsListViaString(scan.nextLine());
         }
         
         return config;

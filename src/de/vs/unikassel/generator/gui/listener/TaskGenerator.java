@@ -96,6 +96,11 @@ public class TaskGenerator implements Runnable {
 	 */
 	private ProgressDialog progressDialog;
 	
+        /**
+         * Represents if the task needs to handle the progress dialog or not.
+         */
+        private boolean isGUI;
+        
 	/**
 	 * Creates a TaskGenerator.
 	 * @param numberOfConcepts The number of concepts the taxonomy should contain.
@@ -122,6 +127,7 @@ public class TaskGenerator implements Runnable {
 		this.owlFileName = owlFileName;
 		this.WSLAFileName = wslafilename;
 		this.generateIntermediateFiles = generateIntermediateFiles;
+                this.isGUI = true;
 	}
 	
 	/**
@@ -431,7 +437,7 @@ public class TaskGenerator implements Runnable {
 			}
 		}		
 	}
-	
+        
 	/**
 	 * Starts the creation of the new task.
 	 */
@@ -441,9 +447,11 @@ public class TaskGenerator implements Runnable {
 		// Create the new task.
 		createTask();
 		
-		// Disable the stop-button and the progress-bar.		
-		this.progressDialog.getStopjButton().setEnabled(false);
-		this.progressDialog.getCreationjProgressBar().setIndeterminate(false);
+		// Disable the stop-button and the progress-bar.	
+                if (this.isGUI) {
+                    this.progressDialog.getStopjButton().setEnabled(false);
+                    this.progressDialog.getCreationjProgressBar().setIndeterminate(false);   
+                }
 	}
 
 	/**
@@ -452,4 +460,8 @@ public class TaskGenerator implements Runnable {
 	public void setProgressDialog(ProgressDialog progressDialog) {
 		this.progressDialog = progressDialog;
 	}	
+        
+        public void setIsGUI(boolean isGUI) {
+            this.isGUI = isGUI;
+        }
 }

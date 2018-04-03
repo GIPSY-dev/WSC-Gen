@@ -1,1 +1,0 @@
-This is the time the composition system needed to calculate the solution.

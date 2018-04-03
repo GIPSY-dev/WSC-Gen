@@ -21,7 +21,7 @@ import de.vs.unikassel.query.client.callback_interface.stub.ClientCallbackInterf
  * @author Marc Kirchhoff
  *
  */
-@WebService(name = "CompositionSystem")
+//@WebService(name = "CompositionSystem")
 @SOAPBinding(style=SOAPBinding.Style.RPC)
 public class CompositionSystemImpl extends CompositionSystemInterface {
 	

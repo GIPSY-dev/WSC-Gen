@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://soap.ws.gipsy.cse.concordia.ca/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://soap.ws.gipsy.cse.concordia.ca/">
+
+<xs:element name="Exception" type="tns:Exception"/>
+
+<xs:element name="calculateMinNumberConcepts" type="tns:calculateMinNumberConcepts"/>
+
+<xs:element name="calculateMinNumberConceptsResponse" type="tns:calculateMinNumberConceptsResponse"/>
+
+<xs:element name="getErrorMessages" type="tns:getErrorMessages"/>
+
+<xs:element name="getErrorMessagesResponse" type="tns:getErrorMessagesResponse"/>
+
+<xs:element name="getFileGenerated" type="tns:getFileGenerated"/>
+
+<xs:element name="getFileGeneratedResponse" type="tns:getFileGeneratedResponse"/>
+
+<xs:element name="infoButton" type="tns:infoButton"/>
+
+<xs:element name="infoButtonResponse" type="tns:infoButtonResponse"/>
+
+<xs:element name="setBpelFileName" type="tns:setBpelFileName"/>
+
+<xs:element name="setBpelFileNameResponse" type="tns:setBpelFileNameResponse"/>
+
+<xs:element name="setCompleteSolutionDepth" type="tns:setCompleteSolutionDepth"/>
+
+<xs:element name="setCompleteSolutionDepthResponse" type="tns:setCompleteSolutionDepthResponse"/>
+
+<xs:element name="setDefault" type="tns:setDefault"/>
+
+<xs:element name="setDefaultResponse" type="tns:setDefaultResponse"/>
+
+<xs:element name="setGenerateIntermediateFiles" type="tns:setGenerateIntermediateFiles"/>
+
+<xs:element name="setGenerateIntermediateFilesResponse" type="tns:setGenerateIntermediateFilesResponse"/>
+
+<xs:element name="setGipsy" type="tns:setGipsy"/>
+
+<xs:element name="setGipsyResponse" type="tns:setGipsyResponse"/>
+
+<xs:element name="setIgnoreMinimum" type="tns:setIgnoreMinimum"/>
+
+<xs:element name="setIgnoreMinimumResponse" type="tns:setIgnoreMinimumResponse"/>
+
+<xs:element name="setNumberOfConcepts" type="tns:setNumberOfConcepts"/>
+
+<xs:element name="setNumberOfConceptsResponse" type="tns:setNumberOfConceptsResponse"/>
+
+<xs:element name="setNumberOfServices" type="tns:setNumberOfServices"/>
+
+<xs:element name="setNumberOfServicesResponse" type="tns:setNumberOfServicesResponse"/>
+
+<xs:element name="setOwlFileName" type="tns:setOwlFileName"/>
+
+<xs:element name="setOwlFileNameResponse" type="tns:setOwlFileNameResponse"/>
+
+<xs:element name="setServiceWSDLFileName" type="tns:setServiceWSDLFileName"/>
+
+<xs:element name="setServiceWSDLFileNameResponse" type="tns:setServiceWSDLFileNameResponse"/>
+
+<xs:element name="setSolutionsList" type="tns:setSolutionsList"/>
+
+<xs:element name="setSolutionsListResponse" type="tns:setSolutionsListResponse"/>
+
+<xs:element name="setSolvableProblem" type="tns:setSolvableProblem"/>
+
+<xs:element name="setSolvableProblemResponse" type="tns:setSolvableProblemResponse"/>
+
+<xs:element name="setTaskWSDLFileName" type="tns:setTaskWSDLFileName"/>
+
+<xs:element name="setTaskWSDLFileNameResponse" type="tns:setTaskWSDLFileNameResponse"/>
+
+<xs:element name="setWSLAFileName" type="tns:setWSLAFileName"/>
+
+<xs:element name="setWSLAFileNameResponse" type="tns:setWSLAFileNameResponse"/>
+
+<xs:element name="start" type="tns:start"/>
+
+<xs:element name="startResponse" type="tns:startResponse"/>
+
+<xs:complexType name="getFileGenerated">
+<xs:sequence>
+<xs:element name="fileType" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getFileGeneratedResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="calculateMinNumberConcepts">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="calculateMinNumberConceptsResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setOwlFileName">
+<xs:sequence>
+<xs:element name="owlFileName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setOwlFileNameResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setDefault">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setDefaultResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setNumberOfServices">
+<xs:sequence>
+<xs:element name="numberOfServices" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setNumberOfServicesResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="start">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="startResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setGenerateIntermediateFiles">
+<xs:sequence>
+<xs:element name="generateIntermediateFiles" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setGenerateIntermediateFilesResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setServiceWSDLFileName">
+<xs:sequence>
+<xs:element name="serviceWSDLFileName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setServiceWSDLFileNameResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setSolvableProblem">
+<xs:sequence>
+<xs:element name="solvableProblem" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setSolvableProblemResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setBpelFileName">
+<xs:sequence>
+<xs:element name="bpelFileName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setBpelFileNameResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setTaskWSDLFileName">
+<xs:sequence>
+<xs:element name="taskWSDLFileName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setTaskWSDLFileNameResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setIgnoreMinimum">
+<xs:sequence>
+<xs:element name="ignoreMinimum" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setIgnoreMinimumResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getErrorMessages">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getErrorMessagesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setNumberOfConcepts">
+<xs:sequence>
+<xs:element name="numberOfConcepts" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setNumberOfConceptsResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setCompleteSolutionDepth">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setCompleteSolutionDepthResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setGipsy">
+<xs:sequence>
+<xs:element name="_gipsy" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setGipsyResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setWSLAFileName">
+<xs:sequence>
+<xs:element name="WSLAFileName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setWSLAFileNameResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="infoButton">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="infoButtonResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setSolutionsList">
+<xs:sequence>
+<xs:element name="depthNumbers" type="xs:int" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setSolutionsListResponse">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>

@@ -11,7 +11,7 @@ import javax.jws.WebParam;;
  * @author Marc Kirchhoff
  *
  */
-@WebService(name = "CompositionSystem")
+//@WebService(name = "CompositionSystem")
 @SOAPBinding(style=SOAPBinding.Style.RPC)
 public class CompositionSystemInterface {
 	

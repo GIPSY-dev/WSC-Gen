@@ -1,6 +1,7 @@
 package ca.concordia.cse.gipsy.ws.rest;
 
 import ca.concordia.cse.gipsy.ws.soap.Generator;
+import ca.concordia.cse.gipsy.ws.syslog.LoggerUtility;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import javax.ejb.Stateless;
@@ -24,13 +25,16 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 @Path("restGenerator")
 public class RestGenerator {
     private Generator instance;
+    private LoggerUtility logUtility;
     
     public RestGenerator() {
         instance = new Generator();
+        logUtility = new LoggerUtility();
         
         try {
             instance.setDefault();   
         } catch (Exception ex) {
+            logUtility.log("Problem when setting the defaults of the generator (REST). Error: " + ex.getMessage(), LoggerUtility.LOG_TYPES.ERROR);
             System.out.println("Problem when setting the defaults of the generator. Error: " + ex.getMessage());
         }
     }
@@ -39,8 +43,6 @@ public class RestGenerator {
     @Path("gen")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response generate(String jsonInput) {
-        System.out.println("JSON input: " + jsonInput);
-        
         ObjectMapper ob = new ObjectMapper();
         
         try {
@@ -57,8 +59,11 @@ public class RestGenerator {
             
             instance.start();
             
+            logUtility.log("Generation of the files started (REST).", LoggerUtility.LOG_TYPES.EVENTS);
+            
             return Response.status(Response.Status.OK).build();
         } catch (Exception ex) {
+            logUtility.log("Problem starting the generation of files (REST). Error: " + ex.getMessage(), LoggerUtility.LOG_TYPES.ERROR);
             System.out.println(ex.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -87,11 +92,15 @@ public class RestGenerator {
             }
             
             if (fileName.isEmpty()) {
+                logUtility.log("Invalid file type to get (REST)", LoggerUtility.LOG_TYPES.ERROR);
                 throw new Exception("Invalid file type to get.");
             }
             
+            logUtility.log("File " + fileName + " has been requested for download (REST).", LoggerUtility.LOG_TYPES.EVENTS);
+            
             return this.generateGetResponse(fileName); 
         } catch (Exception ex) {
+            logUtility.log("Problem when trying to download a generated file (REST). Error: " + ex.getMessage(), LoggerUtility.LOG_TYPES.ERROR);
             System.out.println(ex.getMessage());
             return Response.status(Response.Status.BAD_GATEWAY).build();
         }

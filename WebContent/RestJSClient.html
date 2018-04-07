@@ -7,6 +7,7 @@
     <body>
         <script type="text/javascript">
             const restAPIURL = 'http://localhost:8080/WSC-Gen/resources/restGenerator';
+            const restLogAPIURL = 'http://localhost:8080/WSC-Gen/resources/log';
             
             function makeRequest(verb, url, body, toCallOnSuccess) {
                 document.getElementById("error").innerHTML = "";
@@ -85,6 +86,16 @@
                 });
             }
             
+            function getLogFile() {
+                const fileType = document.getElementById("fileType").value || 'error';
+                const startTime = document.getElementById("startTime").value || undefined;
+                const endTime = document.getElementById("endTime").value || undefined;
+                
+                makeRequest('GET', restLogAPIURL + '/' + fileType + (startTime && endTime ? `/${startTime}/${endTime}` : ''), undefined, function() {
+                    window.open(restLogAPIURL + '/' + fileType + (startTime && endTime ? `/${startTime}/${endTime}` : ''), '_blank');
+                });
+            }
+            
             function changedValue() {
                 if (document.getElementById("isSolvable").value == 'true') {
                     document.getElementById("labelSolutionDepths").style.display = 'block';
@@ -125,6 +136,20 @@
                 <button type="button" onclick="getOWL()">Download OWL</button>
                 <button type="button" onclick="getBPEL()">Download BPEL</button>
             </div>
+            <br/><br/>
+            <label>
+                Log file type (application, error, events):
+                <input id="fileType" type="text"/>
+            </label>
+            <label>
+                Start time (unix epoch):
+                <input id="startTime" type="number"/>
+            </label>
+            <label>
+                End time (unix epoch):
+                <input id="endTime" type="number"/>
+            </label>
+            <button type="button" onclick="getLogFile()">Download Log File</button>
         </div>
     </body>
 </html>

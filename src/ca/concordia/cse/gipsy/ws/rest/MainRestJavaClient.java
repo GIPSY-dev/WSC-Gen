@@ -21,6 +21,7 @@ public class MainRestJavaClient {
             System.out.println("OWL: to get the owl file");
             System.out.println("BPEL: to get the bpel file");
             System.out.println("WSLA: to get the wsla file");
+            System.out.println("LOG: to get the log file");
             System.out.println("");
             
             String answer = scan.nextLine();
@@ -37,6 +38,9 @@ public class MainRestJavaClient {
                     break;
                 case "WSLA":
                     client.getWSLA();
+                    break;
+                case "LOG":
+                    client.getLogFile(getAnswer("Enter log type: ", scan), getAnswer("Enter start time: ", scan), getAnswer("Enter end time: ", scan));
                     break;
                 case "BPEL":
                     client.getBPEL();
@@ -73,5 +77,10 @@ public class MainRestJavaClient {
         }
         
         return config;
+    }
+    
+    private static String getAnswer(String question, Scanner scan) {
+        System.out.println(question);
+        return scan.nextLine();
     }
 }

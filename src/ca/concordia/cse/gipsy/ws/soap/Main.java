@@ -1,5 +1,6 @@
 package ca.concordia.cse.gipsy.ws.soap;
 
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,10 +10,12 @@ import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 
+
 public class Main {
 
 	public static void main(String[] args) throws Exception {
             SoapClient client = new SoapClient();
+
 
             client.setDefault();
             
@@ -168,6 +171,7 @@ public class Main {
             }
 
             scan.close();
+
 		
 	}
 

@@ -2,7 +2,9 @@ package ca.concordia.cse.gipsy.ws.soap;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
+
 import javax.jws.Oneway;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -69,8 +71,9 @@ public class GeneratorWS {
      * @throws Exception
      */
     @WebMethod(operationName="start")
-    public boolean start() throws Exception {
-        return instance.start();
+    public void start() throws Exception {
+        instance.start();
+
     }
 
     /**
@@ -84,6 +87,8 @@ public class GeneratorWS {
         instance.setNumberOfConcepts(numberOfConcepts);
     }
 
+
+
     /**
      * Setter for number of services
      * 
@@ -96,6 +101,7 @@ public class GeneratorWS {
     }
 
     /**
+
      * Setter for solvableProblem
      * 
      * If set to false, solutionDepth, completeSolutionDepth and minNumberOfConcepts are not usable
@@ -119,6 +125,7 @@ public class GeneratorWS {
     }
 
     /**
+
      * Sum the total solutionDepthList indexes to calculate the completeSolutionDepth
      */
     @WebMethod(operationName="setCompleteSolutionDepth")
@@ -147,6 +154,7 @@ public class GeneratorWS {
     }
 
     /**
+
      * Setter for OwlFileName
      * @param owlFileName
      * @throws Exception if file name is null or empty, also if the user didn't ask to override and the operation will override files
@@ -156,7 +164,9 @@ public class GeneratorWS {
         instance.setOwlFileName(owlFileName);
     }
 
+
     /**
+
      * Setter for taskWSDLFileName
      * @param taskWSDLFileName
      * @throws Exception if file is null or empty, also if the user didn't ask to override and the operation will override files
@@ -166,7 +176,9 @@ public class GeneratorWS {
         instance.setTaskWSDLFileName(taskWSDLFileName);
     }
 
+  
     /**
+
      * Refactored function from GeneratorGUIListener.java
      * 
      * Setter for WSLAFileName
@@ -180,6 +192,7 @@ public class GeneratorWS {
 
 
     /**
+
      * Setter
      * @param serviceWSDLFileName
      * @throws Exception if file is null or empty, also if the file will be override and the user didn't ask for it
@@ -189,7 +202,9 @@ public class GeneratorWS {
         instance.setServiceWSDLFileName(serviceWSDLFileName);
     }
 
+
     /**
+
      * User can decide if intermediateFiles need to be created or not
      * 
      * Setter
@@ -200,7 +215,6 @@ public class GeneratorWS {
         instance.setGenerateIntermediateFiles(generateIntermediateFiles);
     }
 
-
     /**
      * User can decide if it wants to ignore the calculated minimum based on the solutiondepths numbers
      * 
@@ -210,6 +224,7 @@ public class GeneratorWS {
     public void setIgnoreMinimum(@WebParam(name= "ignoreMinimum")boolean ignoreMinimum){
         instance.setIgnoreMinimum(ignoreMinimum);
     }
+
 
 
     /**
@@ -224,6 +239,7 @@ public class GeneratorWS {
     public String getErrorMessages(){
         return instance.getErrorMessages();
     }
+
     
     /**
      * 
@@ -233,4 +249,5 @@ public class GeneratorWS {
     public String infoButton(){
         return instance.infoButton();
     }
+
 }

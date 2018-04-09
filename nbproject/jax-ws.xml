@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="GeneratorWS">
+      <implementation-class>ca.concordia.cse.gipsy.ws.soap.GeneratorWS</implementation-class>
+    </service>
+  </services>
+  <clients>
+    <client name="GeneratorWSService">
+      <wsdl-url>http://localhost:8080/WSC-Gen/GeneratorWSService?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/WSC-Gen/GeneratorWSService.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">ca.concordia.cse.gipsy.ws.soap.client</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8080/WSC-Gen/GeneratorWSService?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>ca.concordia.cse.gipsy.ws.soap.client</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>target</wsimport-option-name>
+          <wsimport-option-value>2.1</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+  </clients>
+</jax-ws>

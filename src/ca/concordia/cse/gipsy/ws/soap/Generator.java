@@ -1,8 +1,16 @@
 package ca.concordia.cse.gipsy.ws.soap;
 
 
+import de.vs.unikassel.generator.gui.listener.GeneratorGUIListener;
 import java.io.File;
 import de.vs.unikassel.generator.gui.listener.TaskGenerator;
+
+/* is this needed? from ws merge/error...to test
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import javax.swing.JOptionPane;
+*/
 
 /**
  * Generator based on GeneratorGUIListener.java in de.vs.unikassel.generator.gui.listener
@@ -537,4 +545,28 @@ public class Generator {
             
             return new File(this.outputFolder + "/" + filePath);
         }
+
+        /**
+	 * Handles the "Info"-button.
+	 * Displays some informations about us.
+	 */
+	public String infoButton() {
+		// Read info-file.
+		BufferedReader infoFileReader = new BufferedReader(new InputStreamReader(GeneratorGUIListener.class.getClassLoader().getResourceAsStream(GeneratorGUIListener.infoFilePath)));
+		StringBuilder infoFileText = new StringBuilder();
+		String line = null;
+		
+		try {
+			while((line = infoFileReader.readLine()) != null) {
+				infoFileText.append(line);
+				infoFileText.append("\n");
+			}
+		} catch (IOException exception) {
+			System.err.println("GeneratorGUIListener: An error occurred during the reading of the info-file at "+GeneratorGUIListener.infoFilePath);
+			return "message error";
+		}
+		return infoFileText.toString();
+		
+	}
+
 }

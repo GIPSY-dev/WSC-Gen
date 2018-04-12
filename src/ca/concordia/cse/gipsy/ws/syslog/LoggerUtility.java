@@ -36,7 +36,7 @@ public class LoggerUtility {
         
         WebTarget target = restClient.target(ENDPOINT_URL);
         
-        //target.request(MediaType.APPLICATION_JSON).put(Entity.json(input));
+        target.request(MediaType.APPLICATION_JSON).put(Entity.json(input));
     }
     
     public InputStream getLog(LOG_TYPES logType) {

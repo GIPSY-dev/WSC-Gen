@@ -4,7 +4,7 @@ import ca.concordia.cse.gipsy.ws.soap.Generator;
 import ca.concordia.cse.gipsy.ws.syslog.LoggerUtility;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
-import javax.ejb.Stateless;
+//import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -21,7 +21,7 @@ import javax.ws.rs.core.Response.ResponseBuilder;
  *
  * @author Jo
  */
-@Stateless
+//@Stateless
 @Path("restGenerator")
 public class RestGenerator {
     private Generator instance;

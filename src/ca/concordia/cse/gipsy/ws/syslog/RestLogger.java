@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import javax.ejb.Stateless;
+//import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -24,7 +24,7 @@ import javax.ws.rs.core.Response.ResponseBuilder;
  *
  * @author Jo
  */
-@Stateless
+//@Stateless
 @Path("log")
 public class RestLogger {
     final String BASE_PATH_LOGS = System.getProperty("user.dir");
@@ -71,7 +71,7 @@ public class RestLogger {
             
             pw = new PrintWriter(new FileOutputStream(whereToSave, true));
             
-            pw.append(input.getTimestamp() + " --> " + input.getMessage());
+            pw.append(input.getTimestamp() + " --> " + input.getMessage() + "\r\n");
             
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

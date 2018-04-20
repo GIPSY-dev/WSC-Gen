@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="BPEL_SOAP_Client" targetNamespace="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client" xmlns:ns="http://soap.ws.gipsy.cse.concordia.ca/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client">
+            <xsd:import namespace="http://soap.ws.gipsy.cse.concordia.ca/" schemaLocation="http://localhost:8080/WSC-Gen/GeneratorWSService?xsd=1"/>
+        </xsd:schema>
+    </types>
+    <message name="BPEL_SOAP_ClientOperationRequest">
+        <part name="SOAPInput" type="ns:start"/>
+    </message>
+    <message name="BPEL_SOAP_ClientOperationResponse">
+        <part name="SOAPOutput" type="ns:startResponse"/>
+    </message>
+    <portType name="BPEL_SOAP_ClientPortType">
+        <operation name="BPEL_SOAP_ClientOperation">
+            <input name="input1" message="tns:BPEL_SOAP_ClientOperationRequest"/>
+            <output name="output1" message="tns:BPEL_SOAP_ClientOperationResponse"/>
+        </operation>
+    </portType>
+    <binding name="BPEL_SOAP_ClientBinding" type="tns:BPEL_SOAP_ClientPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="BPEL_SOAP_ClientOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="BPEL_SOAP_ClientService">
+        <port name="BPEL_SOAP_ClientPort" binding="tns:BPEL_SOAP_ClientBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/BPEL_SOAP_ClientService/BPEL_SOAP_ClientPort"/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="BPEL_SOAP_Client">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="BPEL_SOAP_ClientPortTypeRole" portType="tns:BPEL_SOAP_ClientPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

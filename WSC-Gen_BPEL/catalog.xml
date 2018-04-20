@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <nextCatalog catalog="nbproject/private/retriever/catalog.xml"/>
+    <system systemId="http://localhost:8080/WSC-Gen/GeneratorWSService?WSDL" uri="src/localhost_8080/WSC-Gen/GeneratorWSService.wsdl"/>
+    <system systemId="http://localhost:8080/WSC-Gen/GeneratorWSService?xsd=1" uri="src/localhost_8080/WSC-Gen/GeneratorWSService.xsd_1.xsd"/>
+</catalog>

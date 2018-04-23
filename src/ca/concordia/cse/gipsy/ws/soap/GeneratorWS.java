@@ -1,5 +1,6 @@
 package ca.concordia.cse.gipsy.ws.soap;
 
+import ca.concordia.cse.gipsy.ws.syslog.LoggerUtility;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.jws.Oneway;
@@ -15,13 +16,16 @@ import javax.jws.WebService;
 @WebService(name="GeneratorWS")
 public class GeneratorWS {
     private Generator instance;
+    private LoggerUtility logUtility;
 
     public GeneratorWS() {
         instance = new Generator();
+        logUtility = new LoggerUtility();
 
         try {
             instance.setDefault();   
         } catch (Exception ex) {
+            logUtility.log("Problem when setting the defaults of the generator (SOAP). Error: " + ex.getMessage(), LoggerUtility.LOG_TYPES.ERROR);
             System.out.println("Problem when setting the defaults of the generator. Error: " + ex.getMessage());
         }
     }
@@ -46,9 +50,12 @@ public class GeneratorWS {
        }
 
        if (fileName.isEmpty()) {
+           logUtility.log("Invalid generated file to get (SOAP).", LoggerUtility.LOG_TYPES.ERROR);
            throw new Exception("Invalid file type to get.");
        }
 
+       logUtility.log("File " + fileName + " has been requested for download.", LoggerUtility.LOG_TYPES.EVENTS);
+       
        FileDataSource dataSource = new FileDataSource(instance.getOutputFolder() + "/" + fileName);
        return new DataHandler(dataSource);
     }
@@ -70,6 +77,7 @@ public class GeneratorWS {
      */
     @WebMethod(operationName="start")
     public boolean start() throws Exception {
+        logUtility.log("Generation of the file started. (SOAP)", LoggerUtility.LOG_TYPES.EVENTS);
         return instance.start();
     }
 
@@ -210,7 +218,6 @@ public class GeneratorWS {
     public void setIgnoreMinimum(@WebParam(name= "ignoreMinimum")boolean ignoreMinimum){
         instance.setIgnoreMinimum(ignoreMinimum);
     }
-
 
     /**
      * Calculate the minimum number concepts 

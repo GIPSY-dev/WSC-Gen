@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="Generator_Client_REST" targetNamespace="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL_REST/src/Generator_Client_REST"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL_REST/src/Generator_Client_REST" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types/>
+    <message name="Generator_Client_RESTOperationRequest">
+        <part name="part1" type="xsd:string"/>
+    </message>
+    <message name="Generator_Client_RESTOperationResponse">
+        <part name="ClientResponse" type="xsd:anyType"/>
+    </message>
+    <portType name="Generator_Client_RESTPortType">
+        <operation name="Generator_Client_RESTOperation">
+            <input name="input1" message="tns:Generator_Client_RESTOperationRequest"/>
+            <output name="output1" message="tns:Generator_Client_RESTOperationResponse"/>
+        </operation>
+    </portType>
+    <binding name="Generator_Client_RESTBinding" type="tns:Generator_Client_RESTPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="Generator_Client_RESTOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL_REST/src/Generator_Client_REST"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL_REST/src/Generator_Client_REST"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="Generator_Client_RESTService">
+        <port name="Generator_Client_RESTPort" binding="tns:Generator_Client_RESTBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/Generator_Client_RESTService/Generator_Client_RESTPort"/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="Generator_Client_REST">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="Generator_Client_RESTPortTypeRole" portType="tns:Generator_Client_RESTPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

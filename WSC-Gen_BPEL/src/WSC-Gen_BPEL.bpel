@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process
+    name="WSC-Gen_BPEL"
+    targetNamespace="http://enterprise.netbeans.org/bpel/WSC-Gen_BPEL/WSC-Gen_BPEL"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/WSC-Gen_BPEL/WSC-Gen_BPEL"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
+    xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling">
+    <import namespace="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client" location="BPEL_SOAP_Client.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/GeneratorWSServiceWrapper" location="GeneratorWSServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://soap.ws.gipsy.cse.concordia.ca/" location="http://localhost:8080/WSC-Gen/GeneratorWSService?WSDL" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="WSC-GenWS" xmlns:tns="http://enterprise.netbeans.org/bpel/GeneratorWSServiceWrapper" partnerLinkType="tns:GeneratorWSLinkType" partnerRole="GeneratorWSRole"/>
+        <partnerLink name="Client" xmlns:tns="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client" partnerLinkType="tns:BPEL_SOAP_Client" myRole="BPEL_SOAP_ClientPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="StartOut" xmlns:tns="http://soap.ws.gipsy.cse.concordia.ca/" messageType="tns:startResponse"/>
+        <variable name="StartIn" xmlns:tns="http://soap.ws.gipsy.cse.concordia.ca/" messageType="tns:start"/>
+        <variable name="ClientOutput" xmlns:tns="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client" messageType="tns:BPEL_SOAP_ClientOperationResponse"/>
+        <variable name="ClientInput" xmlns:tns="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client" messageType="tns:BPEL_SOAP_ClientOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="Client" operation="BPEL_SOAP_ClientOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client" portType="tns:BPEL_SOAP_ClientPortType" variable="ClientInput"/>
+        <assign name="Assign1">
+            <copy>
+                <from variable="ClientInput" part="SOAPInput"/>
+                <to variable="StartIn" part="parameters"/>
+            </copy>
+        </assign>
+        <invoke name="Invoke1" partnerLink="WSC-GenWS" operation="start" xmlns:tns="http://soap.ws.gipsy.cse.concordia.ca/" portType="tns:GeneratorWS" inputVariable="StartIn" outputVariable="StartOut"/>
+        <assign name="Assign2">
+            <copy>
+                <from>$StartOut.parameters/return</from>
+                <to>$ClientOutput.SOAPOutput/return</to>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="Client" operation="BPEL_SOAP_ClientOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client" portType="tns:BPEL_SOAP_ClientPortType" variable="ClientOutput"/>
+    </sequence>
+</process>

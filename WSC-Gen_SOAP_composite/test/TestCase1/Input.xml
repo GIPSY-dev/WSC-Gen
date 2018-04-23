@@ -1,0 +1,7 @@
+<soapenv:Envelope xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bpel="http://j2ee.netbeans.org/wsdl/WSC-Gen_BPEL/src/BPEL_SOAP_Client">
+  <soapenv:Body>
+    <bpel:BPEL_SOAP_ClientOperation>
+      <SOAPInput/>
+    </bpel:BPEL_SOAP_ClientOperation>
+  </soapenv:Body>
+</soapenv:Envelope>

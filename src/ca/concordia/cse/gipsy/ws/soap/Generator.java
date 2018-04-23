@@ -1,13 +1,13 @@
 package ca.concordia.cse.gipsy.ws.soap;
 
 
+import ca.concordia.cse.gipsy.ws.syslog.LoggerUtility;
 import de.vs.unikassel.generator.gui.listener.GeneratorGUIListener;
 import java.io.File;
 import de.vs.unikassel.generator.gui.listener.TaskGenerator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import javax.swing.JOptionPane;
 
 /**
  * Generator based on GeneratorGUIListener.java in de.vs.unikassel.generator.gui.listener
@@ -37,8 +37,10 @@ public class Generator {
 	private boolean ignoreMinimum = false;
         private boolean isRunning = false;
 
+        private LoggerUtility logUtility;
+        
 	public Generator() {
-
+            this.logUtility = new LoggerUtility();
 	}
 
 
@@ -48,7 +50,7 @@ public class Generator {
 	 */
 	public void setDefault() throws Exception{
             setOutputFolder(System.getProperty("user.dir"));
-                setOverrideFiles(true);	
+            setOverrideFiles(true);	
             
             setNumberOfConcepts(10000);
             setNumberOfServices(4000);
@@ -81,14 +83,18 @@ public class Generator {
 
             taskGenerator.setIsGUI(false);
 
-            Thread taskGeneratorThread = new Thread((Runnable) taskGenerator);
-            taskGeneratorThread.start();
-
             try {
+                logUtility.log("Main thread in Generator class (start) is started.", LoggerUtility.LOG_TYPES.EVENTS);
+            
+                Thread taskGeneratorThread = new Thread((Runnable) taskGenerator);
+                taskGeneratorThread.start();
+                
                 taskGeneratorThread.join();
+                logUtility.log("Main thread in Generator class (start) is finished.", LoggerUtility.LOG_TYPES.EVENTS);
                 this.isRunning = false;
                 return true;
             } catch (InterruptedException ex) {
+                logUtility.log("Exception when waiting for main thread in generator. " + ex.getMessage(), LoggerUtility.LOG_TYPES.ERROR);
                 System.out.println("Exception when waiting for main thread in generator. " + ex.getMessage());
                 this.isRunning = false;
                 return false;
@@ -305,6 +311,7 @@ public class Generator {
 			bpelFileName = bpelFileName+".bpel";
 		}
 		if(containsFile(getOutputFolder(), bpelFileName) && !getOverrideFiles()){
+                    logUtility.log("Files with same name already exist: bpel. Please check box to override or change directory.", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("Files with same name already exist: bpel. Please check box to override or change directory");
 
 		}else{
@@ -321,6 +328,7 @@ public class Generator {
 	 */
 	public String getBpelFileName() throws Exception{
 		if(bpelFileName == null || bpelFileName.trim().equals("")){
+                    logUtility.log("bpel file name must be valid", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("bpel file name must be valid");
 		}
 		return bpelFileName;
@@ -356,6 +364,7 @@ public class Generator {
 		}
 		// Check if the file already exists.
 		if(containsFile(getOutputFolder(), owlFileName) && !getOverrideFiles()) {
+                    logUtility.log("Files with same name already exist: owl. Please check box to override or change directory.", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("Files with same name already exist: owl. Please check box to override or change directory");
 
 		}else{
@@ -370,6 +379,7 @@ public class Generator {
 	 */
 	public String getOwlFileName() throws Exception{
 		if(owlFileName == null || owlFileName.trim().equals("")){
+                    logUtility.log("owl file name must be valid", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("owl file name must be valid");
 		}
 		return owlFileName;
@@ -382,6 +392,7 @@ public class Generator {
 	 */
 	public void setTaskWSDLFileName(String taskWSDLFileName) throws Exception{
 		if(taskWSDLFileName == null || taskWSDLFileName.trim().equals("")){
+                    logUtility.log("task-wsdl-file must have a valid name", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("task-wsdl-file must have a valid name");
 		}
 		// Correct file-extension.
@@ -390,7 +401,7 @@ public class Generator {
 		}
 		// Check if the file already exists.
 		if(containsFile(outputFolder, taskWSDLFileName) && !getOverrideFiles()) {
-
+                    logUtility.log("Files with same name already exist: taskWsdlFileName. Please check box to override or change directory.", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("Files with same name already exist: taskWsdlFileName. Please check box to override or change directory");
 
 		}else{
@@ -406,6 +417,7 @@ public class Generator {
 	 */
 	public String getTaskWSDLFileName() throws Exception{
 		if(taskWSDLFileName == null || taskWSDLFileName.trim().equals("")){
+                    logUtility.log("taskWSDLFileName file name must be valid", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("taskWSDLFileName file name must be valid");
 		}
 		return this.taskWSDLFileName;
@@ -420,6 +432,7 @@ public class Generator {
 	 */
 	public void setWSLAFileName(String WSLAFileName) throws Exception{
 		if(WSLAFileName == null || WSLAFileName.trim().equals("")) {
+                    logUtility.log("WSLA file name must be valid", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("WSLA file name must be valid");
 
 		}
@@ -429,6 +442,7 @@ public class Generator {
 			WSLAFileName = WSLAFileName+".wsla";
 		}
 		if(containsFile(outputFolder, WSLAFileName) && !getOverrideFiles()) {
+                    logUtility.log("Files with same name already exist: WSLAFileName. Please check box to override or change directory.", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("Files with same name already exist: WSLAFileName. Please check box to override or change directory");
 
 		}else{
@@ -444,6 +458,7 @@ public class Generator {
 	 */
 	public String getWSLAFileName() throws Exception{
 		if(WSLAFileName == null || WSLAFileName.trim().equals("")){
+                    logUtility.log("WSLAFileName file name must be valid", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("WSLAFileName file name must be valid");
 		}
 		return this.WSLAFileName;
@@ -457,6 +472,7 @@ public class Generator {
 	public void setServiceWSDLFileName(String serviceWSDLFileName) throws Exception{
 
 		if(serviceWSDLFileName == null || serviceWSDLFileName.trim().equals("")) {
+                    logUtility.log("service wsdl file must be valid", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("service wsdl file must be valid");
 		}
 		// Correct file-extension.
@@ -465,6 +481,7 @@ public class Generator {
 		}
 		// Check if the file already exists.
 		if(containsFile(outputFolder, serviceWSDLFileName) && !getOverrideFiles()) {
+                    logUtility.log("Files with same name already exist: serviceWSDLFileName. Please check box to override or change directory.", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("Files with same name already exist: serviceWSDLFileName. Please check box to override or change directory");
 		}else{
 			this.serviceWSDLFileName = serviceWSDLFileName;
@@ -479,6 +496,7 @@ public class Generator {
 	 */
 	public String getServiceWSDLFileName() throws Exception{
 		if(serviceWSDLFileName == null || serviceWSDLFileName.trim().equals("")){
+                    logUtility.log("serviceWSDLFileName file name must be valid", LoggerUtility.LOG_TYPES.ERROR);
 			throw new Exception("serviceWSDLFileName file name must be valid");
 		}
 		return this.serviceWSDLFileName;
@@ -559,6 +577,7 @@ public class Generator {
 				infoFileText.append("\n");
 			}
 		} catch (IOException exception) {
+                    logUtility.log("GeneratorGUIListener: An error occurred during the reading of the info-file at "+GeneratorGUIListener.infoFilePath, LoggerUtility.LOG_TYPES.ERROR);
 			System.err.println("GeneratorGUIListener: An error occurred during the reading of the info-file at "+GeneratorGUIListener.infoFilePath);
 			return "message error";
 		}
